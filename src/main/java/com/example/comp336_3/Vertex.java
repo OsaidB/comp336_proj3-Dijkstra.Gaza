@@ -1,4 +1,4 @@
-package application;
+package com.example.comp336_3;
 
 import java.util.LinkedList;
 

@@ -1,4 +1,4 @@
-package application;
+package com.example.comp336_3;
 
 public class edges {
 	Vertex desination;
@@ -6,9 +6,9 @@ public class edges {
 	double weight;
 	//destination
 
-	public edges(Vertex source,Vertex desination, double weight) {
+	public edges(Vertex source,Vertex destination, double weight) {
 		super();
-		this.desination = desination;
+		this.desination = destination;
 		this.weight = weight ;
 	}
 	

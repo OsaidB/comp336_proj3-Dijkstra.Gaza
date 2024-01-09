@@ -1,4 +1,4 @@
-package application;
+package com.example.comp336_3;
 
 public class PathTable {
 	private double distance;

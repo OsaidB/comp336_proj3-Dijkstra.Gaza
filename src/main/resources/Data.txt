@@ -1,148 +1,23 @@
-56:91
-South Gate:906:1132
-ABDULHADI:727:959
-North AL-JURAISY ent.:659:958
-South AL-JURAISY ent.:651:1040
-N.SHAHEEN:558:973
-CLI:479:956
-North SCI ent.:365:949
-South SCI ent.:409:1045
-S.ABDULHADI:312:989
-West Gate:223:933
-BZU MUSEUM:627:933
-ALGHANIM (Main Lib.):522:887
-North KNH ent.:488:859
-WEST KNH ent.:448:867
-مدخل المالية الشرقي (الادارة):441:844
-مدخل المالية الغربي (الادارة):355:850
-North AGGAD ent.:276:703
-MAIN EAST AGGAD ent.:263:817
-MAIN WEST AGGAD ent.:218:847
-South AGGAD ent.:300:864
-ملعب الهندسة:310:760
-مشاغل عامّة:185:803
-الخدمات:200:747
-كافيتيريا ابو احمد:215:904
-الرئاسة:656:783
-EAST IOL ent .(مبنى الحقوق القديم):543:764
-WEST IOL ent .(مبنى الحقوق القديم):504:744
-ملحق الحقوق:531:792
-MAKTOUM(مدخل شؤون الطلبة):480:733
-MAKTOUM(مدخل المجمّع):430:789
-MAKTOUM(المجلس+الاستراحة):398:726
-WKS (مشاغل الهندسة):310:716
-ملعب المشاغل:345:685
-ALSADIK (الحقوق والادارة العامة):617:631
-(Book store/بنك فلسطين/المحطة):555:670
-الشني:516:667
-كافيتيريا الدوم:520:613
-المدرّج+الملعب الرئيسي:385:580
-BAMIEH(التربية):711:575
-A.SHAHEEN(اداب):559:537
-زعني:804:506
-KHOURY(التنمية):704:480
-MAIN BAHRAIN ent.:658:493
-Side BAHRAIN ent.:629:522
-North GYM ent.:441:443
-South GYM ent.:426:515
-ملعب كلية الرياضة الجانبي:406:424
-MASRI(IT):826:433
-East Gate:883:380
-MASROUJI(الإعلام):701:441
-SH.SHAHEEN(قاعات عامة):523:400
-NSA(مسرح نسيب عزيز شاهين):829:320
-PNH(تمريض):607:350
-مبنى الفنون:478:354
-DARWAZAHJ(معهد سميح دروزة):553:241
-متحف فلسطين:737:121
-South Gate:ABDULHADI:185
-South Gate:South AL-JURAISY ent.:217
-ABDULHADI:North AL-JURAISY ent.:44
-ABDULHADI:ملحق الحقوق:214
-ABDULHADI:ALGHANIM (Main Lib.):202
-North AL-JURAISY ent.:South AL-JURAISY ent.:55
-North AL-JURAISY ent.:BZU MUSEUM:27
-BZU MUSEUM:ALGHANIM (Main Lib.):83
-BZU MUSEUM:N.SHAHEEN:41
-N.SHAHEEN:CLI:64
-N.SHAHEEN:ALGHANIM (Main Lib.):54
-ALGHANIM (Main Lib.):North KNH ent.:48
-ALGHANIM (Main Lib.):ملحق الحقوق:102
-ALGHANIM (Main Lib.):CLI:53
-CLI:North KNH ent.:69
-CLI:WEST KNH ent.:83
-CLI:North SCI ent.:55
-CLI:South SCI ent.:100
-South SCI ent.:South AL-JURAISY ent.:179
-South SCI ent.:S.ABDULHADI:72
-North SCI ent.:WEST KNH ent.:79
-North SCI ent.:مدخل المالية الشرقي (الادارة):92
-North SCI ent.:مدخل المالية الغربي (الادارة):57
-North SCI ent.:South AGGAD ent.:85
-North SCI ent.:West Gate:91
-North SCI ent.:S.ABDULHADI:63
-S.ABDULHADI:West Gate:70
-West Gate:كافيتيريا ابو احمد:17
-West Gate:South AGGAD ent.:61
-North KNH ent.:WEST KNH ent.:15
-North KNH ent.:ملحق الحقوق:55
-North KNH ent.:مدخل المالية الشرقي (الادارة):36
-North KNH ent.:WEST IOL ent .(مبنى الحقوق القديم):69
-WEST KNH ent.:مدخل المالية الشرقي (الادارة):20
-مدخل المالية الشرقي (الادارة):ملحق الحقوق:62
-مدخل المالية الشرقي (الادارة):MAKTOUM(مدخل المجمّع):37
-مدخل المالية الشرقي (الادارة):مدخل المالية الغربي (الادارة):46
-مدخل المالية الغربي (الادارة):South AGGAD ent.:44
-مدخل المالية الغربي (الادارة):MAIN EAST AGGAD ent.:52
-مدخل المالية الغربي (الادارة):ملعب الهندسة:62
-مدخل المالية الغربي (الادارة):MAKTOUM(مدخل المجمّع):70
-كافيتيريا ابو احمد:South AGGAD ent.:91
-كافيتيريا ابو احمد:MAIN WEST AGGAD ent.:91
-MAIN WEST AGGAD ent.:South AGGAD ent.:91
-MAIN WEST AGGAD ent.:MAIN EAST AGGAD ent.:91
-MAIN WEST AGGAD ent.:مشاغل عامّة:40
-South AGGAD ent.:MAKTOUM(المجلس+الاستراحة):119
-MAIN EAST AGGAD ent.:ملعب الهندسة:46
-MAIN EAST AGGAD ent.:MAKTOUM(مدخل المجمّع):120
-مشاغل عامّة:الخدمات:39
-الخدمات:North AGGAD ent.:91
-الخدمات:ملعب كلية الرياضة الجانبي:260
-North AGGAD ent.:WKS (مشاغل الهندسة):15
-North AGGAD ent.:ملعب كلية الرياضة الجانبي:235
-East Gate:NSA(مسرح نسيب عزيز شاهين):71
-East Gate:MASRI(IT):73
-East Gate:MASROUJI(الإعلام):151
-East Gate:PNH(تمريض):195
-NSA(مسرح نسيب عزيز شاهين):PNH(تمريض):174
-NSA(مسرح نسيب عزيز شاهين):MASRI(IT):99
-NSA(مسرح نسيب عزيز شاهين):MASROUJI(الإعلام):140
-MASRI(IT):زعني:54
-MASRI(IT):MASROUJI(الإعلام):114
-MASRI(IT):PNH(تمريض):168
-PNH(تمريض):متحف فلسطين:213
-PNH(تمريض):DARWAZAHJ(معهد سميح دروزة):98
-PNH(تمريض):مبنى الفنون:92
-PNH(تمريض):SH.SHAHEEN(قاعات عامة):54
-PNH(تمريض):MASROUJI(الإعلام):83
-DARWAZAHJ(معهد سميح دروزة):متحف فلسطين:243
-DARWAZAHJ(معهد سميح دروزة):مبنى الفنون:117
-DARWAZAHJ(معهد سميح دروزة):SH.SHAHEEN(قاعات عامة):119
-مبنى الفنون:SH.SHAHEEN(قاعات عامة):43
-مبنى الفنون:North GYM ent.:116
-مبنى الفنون:ملعب كلية الرياضة الجانبي:91
-SH.SHAHEEN(قاعات عامة):MASROUJI(الإعلام):130
-SH.SHAHEEN(قاعات عامة):MAIN BAHRAIN ent.:166
-SH.SHAHEEN(قاعات عامة):Side BAHRAIN ent.:123
-SH.SHAHEEN(قاعات عامة):A.SHAHEEN(اداب):98
-SH.SHAHEEN(قاعات عامة):North GYM ent.:68
-North GYM ent.:Side BAHRAIN ent.:128
-North GYM ent.:A.SHAHEEN(اداب):106
-North GYM ent.:South GYM ent.:58
-North GYM ent.:ملعب كلية الرياضة الجانبي:31
-South GYM ent.:A.SHAHEEN(اداب):86
-South GYM ent.:كافيتيريا الدوم:100
-South GYM ent.:المدرّج+الملعب الرئيسي:32
-المدرّج+الملعب الرئيسي:ملعب المشاغل:21
-ملعب المشاغل:WKS (مشاغل الهندسة):13
-WKS (مشاغل الهندسة):MAKTOUM(المجلس+الاستراحة):75
-WKS (مشاغل الهندسة):ملعب الهندسة:24
+16:6
+Gaza:34.46684799702597:31.501704065964752:City
+Beit_Hanoun:34.53676860910133:31.538476592239412:City
+Atatra:34.48732411756458:31.559562519125475:City
+Jabalia:34.47978386357475:31.529321977652728:City
+Al_Mawasi:34.25609303279058:31.348340837575552:City
+Khan_Yunis:34.303999975740254:31.346206712124786:City
+Zeitoun:34.4496191263176:31.51743580884074:City
+Bureij:34.40234703284024:31.438785088019948:City
+Nuseirat_Camp:34.3928660328464:31.449892916083623:City
+Maghazi:34.38541594817318:31.421732844290005:City
+Deir_al_Balah:34.35084511748609:31.417138088179538:City
+Bani_Suheila:34.32521103278715:31.342029782704373:City
+Salah_Al_Din:34.523671975810295:31.54017538177313:City
+Al_Mansheya:34.50793145852147:31.546752648744537:City
+Tal_as_Sultan:34.24139303276912:31.30919975737915:City
+Al_Bayuk:34.28158094808626:31.26336977206698:City
+Gaza:Khan_Yunis:20
+Khan_Yunis:Zeitoun:20
+Zeitoun:Salah_Al_Din:20
+Salah_Al_Din:Al_Mansheya:20
+Al_Mansheya:Gaza:20
+Khan_Yunis:Salah_Al_Din:20
