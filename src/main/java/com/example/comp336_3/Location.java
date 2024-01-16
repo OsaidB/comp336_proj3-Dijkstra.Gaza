@@ -13,45 +13,35 @@ import javafx.util.Duration;
 public class Location {
 
     private String name;
-    //private edges e;
-//	private double x;
-//	private double y;
     private double longitude;
     private double latitude;
+    private String type;
+    private boolean sourceOrTarget = false;
+
+    /////////////////////////////////////////////////////////
+
     private RadioButton radioButton = new RadioButton();
     private ToggleGroup group;
-
-    private String type;
-
     static ObservableList<String> items;
-    private boolean sourceOrTarget=false;
+
+    /////////////////////////////////////////////////////////
+
+
     public Location() {
         // TODO Auto-generated constructor stub
     }
 
-
-
     public Location(String line) {
         String[] arr = line.split(":");
-        String[] arr1 = line.split(",");
-
 
         this.name = arr[0];
-
-//		String lat = String.format("%.9f", Double.parseDouble(arr[1]));
-//		String lon = String.format("%.9f", Double.parseDouble(arr[2]));
-
-//		this.latitude = Double.parseDouble(lat);
-//		this.longitude = Double.parseDouble(lon);
-
         this.latitude = Double.parseDouble(arr[1]);
         this.longitude = Double.parseDouble(arr[2]);
-
         this.type = arr[3];
-        //this.e.weight=Double.parseDouble(arr1[0]);
-
 
         radioButton.setToggleGroup(group);
+
+
         if (type.equals("City")) {
 //			radioButton.setPadding(new Insets(-7.5));
 //			ImageView vi = new ImageView(new Image("H:\\.BZU MAIN\\.BZU\\COMP336 - Copy\\COMP336_3 RESOURCES\\location-pin (1).png"));
@@ -72,16 +62,10 @@ public class Location {
             vi.setFitHeight(4);
             vi.setFitWidth(4);
 
-//			radioButton.setDisable(true);
-//			radioButton.setMouseTransparent(true);
-//			radioButton.setStyle("-fx-opacity: 1;");
-//			radioButton.addEventFilter(MouseEvent.MOUSE_CLICKED, MouseEvent::consume);
-
             radioButton.setGraphic(vi);
         } else {
             System.out.println("Error");
         }
-
 
         /////////////////////////////////////////////////
         Tooltip tip = new Tooltip(this.getName());
@@ -109,7 +93,7 @@ public class Location {
                     radioButton.setGraphic(vImageFromPin);
 
 //               int index=getItemIndex(radioButton.getText());
-                    int index=getItemIndex(this.getName());
+                    int index = getItemIndex(this.getName());
 
 //                Main.sourceCombo.getItems().get();
 
@@ -120,11 +104,6 @@ public class Location {
                     } else {
                         System.out.println("****************************Error! Item not found!****************************");
                     }
-
-
-
-
-
 //
 //
 //                for (int i = 0; i < Main.sourceCombo.getVisibleRowCount(); i++) {
@@ -140,13 +119,7 @@ public class Location {
 //                    }}
 //                Main.numOf_SelectedCities += 1;
                     System.out.println(Main.numOf_SelectedCities);
-                }else if (Main.numOf_SelectedCities == 1) {//target
-
-//                ImageView vi0 = new ImageView(new Image("H:\\.BZU MAIN\\.BZU\\COMP336 - Copy\\COMP336_3 RESOURCES\\location-pin (2).png"));
-//                vi0.setFitHeight(16);
-//                vi0.setFitWidth(16);
-//                radioButton.setGraphic(vi0);
-//                Main.numOf_SelectedCities += 1;
+                } else if (Main.numOf_SelectedCities == 1) {//target
 
                     String toPinUrl = getClass().getClassLoader().getResource("toPin.png").toExternalForm();
                     Image imageToPin = new Image(toPinUrl);
@@ -157,7 +130,7 @@ public class Location {
 
                     radioButton.setGraphic(vImageToPin);
 
-                    int index=getItemIndex(this.getName());
+                    int index = getItemIndex(this.getName());
 
 //                Main.sourceCombo.getItems().get();
 
@@ -172,7 +145,7 @@ public class Location {
                 }
 
                 radioButton.setSelected(true);
-                sourceOrTarget=true;
+                sourceOrTarget = true;
                 Main.numOf_SelectedCities += 1;
                 if (Main.numOf_SelectedCities == 2) {
                     Main.lockAllCities();
@@ -191,14 +164,12 @@ public class Location {
             });
         }
 
-        /////////////////////////////////////////////////
     }
 
     private int getItemIndex(String nameOfItem) {
-       items  = Main.sourceCombo.getItems();
+        items = Main.sourceCombo.getItems();
 
-//        String nameToFind = "Option C";  // The name of the item you want to find
-        int index = -1;  // Initialize a variable to store the index (-1 indicates not found)
+        int index = -1;
 
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i).equals(nameOfItem)) {
@@ -206,17 +177,18 @@ public class Location {
                 break;  // Exit the loop once the item is found
             }
         }
-       return index;
+        return index;
     }
 
     public void setSourceOrTarget(boolean sourceOrTarget) {
         this.sourceOrTarget = sourceOrTarget;
     }
 
-    public boolean getSourceOrTarget(){
+    public boolean getSourceOrTarget() {
 
         return sourceOrTarget;
     }
+
     public String getType() {
         return type;
     }
@@ -264,22 +236,5 @@ public class Location {
     public void setGroup(ToggleGroup group) {
         this.group = group;
     }
-
-
-//	public double getX() {
-//		return latitude;
-//	}
-//
-//	public void setX(double x) {
-//		this.x = x;
-//	}
-//
-//	public double getY() {
-//		return longitude;
-//	}
-//
-//	public void setY(double y) {
-//		this.y = y;
-//	}
 
 }

@@ -3,68 +3,70 @@ package com.example.comp336_3;
 import java.util.LinkedList;
 
 public class Vertex {
-	Location location;
-	Vertex previous;
-	int num;
-	double distance=Integer.MAX_VALUE;//
-	boolean visited;
-	LinkedList<Edge> adjacentsList = new LinkedList<Edge>();
+    Location location;
+    ////////////////////////////////////	//
+    boolean visited;
+    double distance = Integer.MAX_VALUE;//	//after calculating between...
+    Vertex previous;
+    ////////////////////////////////////	//
+    int num;
 
-	public Vertex(Location location, int number) {
-		super();
-		this.location = location;
-		this.num = number;
-	}
-
-	public Location getLocation() {
-		return location;
-	}
+    LinkedList<Edge> adjacentsList = new LinkedList<Edge>();
 
 
-	public void setLocation(Location location) {
-		this.location = location;
-	}
+    public Vertex(Location location, int number) {
+        super();
+        this.location = location;
+        this.num = number;
+    }
 
+    public Location getLocation() {
+        return location;
+    }
 
-	public int getNum() {
-		return num;
-	}
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
-	public void setNum(int num) {
-		this.num = num;
-	}
+    public int getNum() {
+        return num;
+    }
 
-	public double getDistance() {
-		return distance;
-	}
+    public void setNum(int num) {
+        this.num = num;
+    }
 
-	public void setDistance(int distance) {
-		this.distance = distance;
-	}
+    public double getDistance() {
+        return distance;
+    }
 
-	public LinkedList<Edge> getAdjacentsList() {
-		return adjacentsList;
-	}
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
 
-	public void setAdjacentsList(LinkedList<Edge> adjacentsList) {
-		this.adjacentsList = adjacentsList;
-	}
+    public LinkedList<Edge> getAdjacentsList() {
+        return adjacentsList;
+    }
 
-	public boolean FindEdge(String ss) {
+    public void setAdjacentsList(LinkedList<Edge> adjacentsList) {
+        this.adjacentsList = adjacentsList;
+    }
 
-		for (int i = 0; i < adjacentsList.size(); i++) {
-			if (adjacentsList.get(i).getD().getLocation().getName().compareToIgnoreCase(ss) == 0)
-				return true;
-		}
-		return false;
-	}
+    public boolean FindEdge(String ss) {
 
-	public String ttoString() {
-		String r = location.getName()+":";
-		for (int i = 0; i < adjacentsList.size(); i++) {
-			r = r + adjacentsList.get(i).targetVer.location.getName() + "\n";
-		}
-		return r;
-	}
+        for (int i = 0; i < adjacentsList.size(); i++) {
+            if (adjacentsList.get(i).getD().getLocation().getName().compareToIgnoreCase(ss) == 0)
+                return true;
+        }
+        return false;
+    }
+
+    public String ttoString() {
+        String r = location.getName() + ":";
+        for (int i = 0; i < adjacentsList.size(); i++) {
+            r = r + adjacentsList.get(i).targetVer.location.getName() + "\n";
+        }
+        return r;
+    }
 
 }

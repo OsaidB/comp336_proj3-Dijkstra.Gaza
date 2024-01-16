@@ -13,13 +13,10 @@ import java.util.PriorityQueue;
 import java.util.Scanner;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
@@ -38,13 +35,9 @@ public class Main extends Application {
     static ToggleButton click = new ToggleButton("Click in map");
     static ToggleButton combo = new ToggleButton("Combo Box");
     ////////////////////////////////////////////////////////////////////////////////////
-    private double lastX, lastY;
-    ////////////////////////////////////////////////////////////////////////////////////
     static int numOf_SelectedCities = 0;
     static Pane pane2 = new Pane();
     private Alert error = new Alert(AlertType.ERROR);
-    ArrayList<PathTable> tableData = new ArrayList<PathTable>();
-    ObservableList<PathTable> data = FXCollections.observableArrayList(tableData);
     static ArrayList<Vertex> citiesAndStreets = new ArrayList<>();
     ////////////////////////////////////////////////////////////////////////////////////
     //original coordinates
@@ -64,6 +57,8 @@ public class Main extends Application {
     Button reset;
     AnimatedZoomOperator zoomOperator = new AnimatedZoomOperator();
     boolean flag_CrossroadsVisible = false;
+    String finalResult = "";
+
 
     @Override
     public void start(Stage primaryStage) throws URISyntaxException, FileNotFoundException {
@@ -165,38 +160,6 @@ public class Main extends Application {
                     break;
                 }
             }
-
-//            for (int i = 0; i < citiesAndStreets.size(); i++) {
-//                String type = citiesAndStreets.get(i).getLocation().getType();
-//                if (type.equals("City") && citiesAndStreets.get(i).getLocation().getName().equals(sourceCombo.getSelectionModel().getSelectedItem())) {
-//
-//                    String fromPinUrl = getClass().getClassLoader().getResource("fromPin.png").toExternalForm();
-//                    Image imageFromPin = new Image(fromPinUrl);
-//                    ImageView vImageFromPin = new ImageView(imageFromPin);
-//
-//                    vImageFromPin.setFitHeight(32);
-//                    vImageFromPin.setFitWidth(16);
-//
-//                    citiesAndStreets.get(i).getLocation().getRadioButton().setGraphic(vImageFromPin);
-//                    citiesAndStreets.get(i).getLocation().getRadioButton().setSelected(true);//////////////////////////////////
-//
-//                    numOf_SelectedCities += 1;
-//                    citiesAndStreets.get(i).getLocation().setSourceOrTarget(true);
-//                    if (numOf_SelectedCities == 2) {
-//                        lockAllCities();
-//                        run.setDisable(false);
-//                        reset.setDisable(false);
-//
-//                        targetCombo.setDisable(true);
-//                        sourceCombo.setDisable(true);
-//                        citiesAndStreets.get(i).getLocation().getRadioButton().setDisable(false);
-//                    } else if (numOf_SelectedCities == 1) {
-//                        reset.setDisable(false);
-//                    }
-//
-//                    break;
-//                }
-//            }
 
         });
 
@@ -307,7 +270,7 @@ public class Main extends Application {
         lblResultsSec.setMinHeight(50);
         lblResultsSec.setStyle("-fx-background-color: #455954 ;-fx-opacity: 1;-fx-font-size: 20px;-fx-font-weight: bold;");
 
-        //////////////////////
+//////////////////////
         Label lblPath = new Label("Shortest Path:");
         lblPath.setPadding(new Insets(7));
         lblPath.setPadding(new Insets(7));
@@ -319,7 +282,7 @@ public class Main extends Application {
         HBox hBox_path = new HBox(lblPath, resultPath_txtAr);
         hBox_path.setSpacing(57);
         hBox_path.setAlignment(Pos.TOP_LEFT);
-        //////////////////////
+//////////////////////
         Label lblDistance = new Label("Distance (in meters):");
         lblDistance.setStyle("-fx-font-size: 20px;");
         lblDistance.setMinHeight(50);
@@ -343,76 +306,34 @@ public class Main extends Application {
         VBox vb_TheTwoSections = new VBox(vbInputs, vbResult);
         vb_TheTwoSections.setSpacing(7);
 
-
-        VBox vbRightSide = new VBox(10, vb_TheTwoSections);                //1+2
+        VBox vbRightSide = new VBox(10, vb_TheTwoSections);//no need but it's okay
         vbRightSide.setAlignment(Pos.CENTER);
         vbRightSide.setSpacing(20);
-//		VBox vMap = new VBox(pane2);					///////
-//		vMap.setAlignment(Pos.CENTER);
-
-
-//        // Create panel
-//        StackPane zoomPane = new StackPane();
-//
-//        zoomPane.getChildren().add(new Circle(100, 100, 10));
-//        zoomPane.getChildren().add(new Circle(200, 200, 20));
-//
-//        zoomPane.setOnScroll(new EventHandler<ScrollEvent>() {
-//            @Override
-//            public void handle(ScrollEvent event) {
-//                double zoomFactor = 1.5;
-//                if (event.getDeltaY() <= 0) {
-//                    // zoom out
-//                    zoomFactor = 1 / zoomFactor;
-//                }
-//                zoomOperator.zoom(zoomPane, zoomFactor, event.getSceneX(), event.getSceneY());
-//            }
-//        });
-//
-//
-////        pane2.setOnMousePressed(this::handleMousePressed);
-////        pane2.setOnMouseDragged(this::handleMouseDragged);
-//        // Listen to mouse events for dragging
-//        pane2.setOnMousePressed(zoomOperator::handleMousePressed);
-//        pane2.setOnMouseDragged(event -> zoomOperator.handleMouseDragged(event, pane2));
-//
-////        zoomPane.center
-//        zoomPane.getChildren().add(pane2);
-//        zoomPane.setAlignment(Pos.CENTER);
-//
-//
-//        ScrollPane pane2Scroll = new ScrollPane(zoomPane);
-////        pane2Scroll.setAlignment(Pos.CENTER);
-////        pane2Scroll.setPadding(new Insets(30));
-//
-////        ScrollPane pane2Scroll = new ScrollPane(new StackPane(pane2));
-//
-//        Button resetButton = new Button("Reset View");
-//        resetButton.setOnAction(event -> resetPane(zoomPane));
-//
-//        Button crossroads = new Button("Show Crossroads");
-//        crossroads.setOnAction(event -> showCrossroads());
-//
-//        // Create a layout for the button
-//        VBox buttonLayout = new VBox(pane2Scroll, resetButton, crossroads);
-//        buttonLayout.setAlignment(Pos.BASELINE_RIGHT);
-//        buttonLayout.setSpacing(20);
-
-
-        HBox mainBox = new HBox(vbLeftSide, vbRightSide);        //all
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//4
+        //finishing the visual part
+        //4.1   :   putting left side and right side together
+        HBox mainBox = new HBox(vbLeftSide, vbRightSide);
         mainBox.setSpacing(30);
         mainBox.setPadding(new Insets(30));
 
         mainBox.setAlignment(Pos.CENTER);
-
+        /////////////////////////////////////////////////////////////////////
+        //4.2_summingTheTwoSec   :   {source/target}+{results Section}
         /////////////////////////////////////////////////////////////////////
         mainPane.setCenter(mainBox);
         mainPane.setAlignment(mainBox, Pos.CENTER);
 
+        mainPane.setStyle("-fx-background-color: #565c5e;");
+        mainPane.setMinWidth(1600);
+        mainPane.setMinHeight(900);
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//5
+        //Points on map     +   setOnActions for run & reset
+        //5.1   :   Points on map
+        setPointsOnMap();//////////
 
-        addPoint();///////////////////////////////////////////////////////////
-
+        //5.2   :   setOnActions for run & reset
         run.setOnAction(e -> {
             if (flag_CrossroadsVisible == false) {
                 showCrossroads();
@@ -437,14 +358,15 @@ public class Main extends Application {
             }
 
             if (vertx1 != null && vertx2 != null) {
-                int i = drawLine(Dijkstra(vertx1, vertx2));
-                if (i == 0)
-                    txtDistance.setText("0");
-                else if (i == 1)
-                    txtDistance.setText(String.valueOf(vertx2.distance));
-                data = FXCollections.observableArrayList(tableData);
-                resultPath_txtAr.setText("" + data);
 
+                int i = drawLine(Dijkstra(vertx1, vertx2));
+                if (i == 0){
+                    txtDistance.setText("0");
+                } else if (i == 1){
+                    txtDistance.setText(String.valueOf(vertx2.distance));
+                }
+
+                resultPath_txtAr.setText(finalResult);
             }
 
         });
@@ -457,9 +379,6 @@ public class Main extends Application {
             sourceCombo.getSelectionModel().select(null);
 
             txtDistance.setText("");
-
-            data.clear();
-            tableData.clear();
 
             numOf_SelectedCities = 0;
 
@@ -493,7 +412,7 @@ public class Main extends Application {
                 ver.previous = null;
             }
 
-            addPoint();
+            setPointsOnMap();
 
             run.setDisable(true);
             reset.setDisable(true);
@@ -503,25 +422,14 @@ public class Main extends Application {
 
         });
 
-//		addPoint();
-//		pane.getChildren().add(zoomPane);
-
-//        zoomPane.getChildren().add(pane);
-//        zoomPane.setAlignment(Pos.CENTER);
-
-
-        mainPane.setStyle("-fx-background-color: #565c5e;");
-        mainPane.setMinWidth(1600);
-        mainPane.setMinHeight(900);
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//6
+        //making the final look scrollable, and putting it in the main final scene
         ScrollPane scroll = new ScrollPane(mainPane);
         scroll.setStyle("-fx-background-color: #565c5e;");
-
-        Scene scene = new Scene(scroll, 1600, 910);
         scroll.setFitToWidth(true);
-//        scroll.setFitToHeight(true);
-        scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-//        scroll.setFitToHeight(true);
+
+        Scene scene = new Scene(scroll, 1600, 920);
         scene.getStylesheets().add(getClass().getClassLoader().getResource("application.css").toExternalForm());
 
         primaryStage.setScene(scene);
@@ -565,7 +473,13 @@ public class Main extends Application {
         pane.setScaleY(1.0);
     }
 
-    private int drawLine(Vertex Destination) {
+    private int drawLine(Vertex target) {
+
+        if (target == null) {
+            error.setContentText("No path");
+            error.show();
+            return 0;
+        }
 
         //"from" vertex
         double orgLat1_Converted = 0;
@@ -575,121 +489,67 @@ public class Main extends Application {
         double orgLat2_Converted = 0;
         double orgLon2_Converted = 0;
 
+        System.out.println("===============================================");
 
-        if (Destination == null) {
+        List<Vertex> pathList = new ArrayList<>();
+        for (Vertex v = target; v != null; v = v.previous) {
+
+            System.out.println(v.location.getName());
+            System.out.println("↓");
+
+            pathList.add(v);
+        }
+
+        // V
+        Collections.reverse(pathList);
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        int tempCounter = 0;
+
+        String currName = "";
+        finalResult = "";
+        if (pathList.size() >= 1) {
+
+            for (Vertex ver : pathList) {
+                currName = ver.getLocation().getName();
+
+                if (tempCounter == 0) {
+                    finalResult = currName;
+                } else {
+                    finalResult = finalResult + "\n↓\n" + currName;
+                }
+                tempCounter++;
+            }
+
+        } else if (pathList.size() <= 1) {
             error.setContentText("No path");
             error.show();
-            return 0;
-        } else {
-            List<Vertex> pathList = new ArrayList<>();
-            for (Vertex v = Destination; v != null; v = v.previous) {
-                System.out.println("===============================================");
-                System.out.println(v.location.getName());
-                System.out.println("↓");
-
-                pathList.add(v);
-            }
-            System.out.println();
-            // V
-            Collections.reverse(pathList);
-
-            if (pathList.size() >= 1) {
-                for (int i = 1; i < pathList.size(); i++) {
-                    double d = Destination.getDistance();
-                    // double d = Distance(p.get(i - 1), p.get(i));
-                    tableData.add(new PathTable(d, pathList.get(i - 1).getLocation().getName(), pathList.get(i).getLocation().getName()));
-                }
-
-            } else if (pathList.size() <= 1) {
-                error.setContentText("No path");
-                error.show();
-            }
-
-
-            for (int i = 0; i < pathList.size() - 1; i++) {
-                Vertex fromVer = pathList.get(i);
-                Vertex toVer = pathList.get(i + 1);
-
-                if (i != 0 && i != pathList.size() - 1) {
-
-
-                    String fromPinUrl = getClass().getClassLoader().getResource("fromPin.png").toExternalForm();
-                    Image imageFromPin = new Image(fromPinUrl);
-                    ImageView vImageFromPin = new ImageView(imageFromPin);
-
-                    vImageFromPin.setFitHeight(32);
-                    vImageFromPin.setFitWidth(16);
-
-
-//                    ImageView vi0 = new ImageView(new Image(
-//                            "H:\\.BZU MAIN\\.BZU\\COMP336 - Copy\\COMP336_3 RESOURCES\\location-pin (4).png"));
-//                    vi0.setFitHeight(16);
-//                    vi0.setFitWidth(16);
-
-                    if (fromVer.getLocation().getType().equals("City")) {
-                        fromVer.getLocation().getRadioButton().setGraphic(vImageFromPin);
-                    }
-
-
-                }
-
-                //"from" vertex coordinates after converting them to pixels
-                orgLat1_Converted = calcPicLatX(fromVer.location.getLatitude());
-                orgLon1_Converted = calcPicLonY(fromVer.location.getLongitude());
-
-                //"to" vertex coordinates after converting them to pixels
-                orgLat2_Converted = calcPicLatX(toVer.location.getLatitude());
-                orgLon2_Converted = calcPicLonY(toVer.location.getLongitude());
-
-                Line line = new Line(orgLat1_Converted, orgLon1_Converted, orgLat2_Converted, orgLon2_Converted);
-//                Line line = new Line(fromVer.college.getLatitude(), fromVer.college.getLongitude(), toVer.college.getLatitude(), toVer.college.getLongitude());
-
-                pane2.getChildren().add(line);
-            }
         }
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        for (int i = 0; i < pathList.size() - 1; i++) {
+            Vertex fromVer = pathList.get(i);
+            Vertex toVer = pathList.get(i + 1);
+
+            //"from" vertex coordinates after converting them to pixels
+            orgLat1_Converted = calcPicLatX(fromVer.location.getLatitude());
+            orgLon1_Converted = calcPicLonY(fromVer.location.getLongitude());
+
+            //"to" vertex coordinates after converting them to pixels
+            orgLat2_Converted = calcPicLatX(toVer.location.getLatitude());
+            orgLon2_Converted = calcPicLonY(toVer.location.getLongitude());
+
+            Line line = new Line(orgLat1_Converted, orgLon1_Converted, orgLat2_Converted, orgLon2_Converted);
+
+            pane2.getChildren().add(line);
+        }
+
         return 1;
 
     }
 
-    public void handleMousePressed(MouseEvent event) {
-        // Record the initial mouse coordinates when pressed
-        lastX = event.getSceneX();
-        lastY = event.getSceneY();
-    }
-
-    public void handleMouseDragged(MouseEvent event, Pane pane) {
-        // Calculate the delta between current and last mouse coordinates
-        double deltaX = event.getSceneX() - lastX;
-        double deltaY = event.getSceneY() - lastY;
-
-        // Adjust the pane's position based on the drag
-        pane.setLayoutX(pane.getLayoutX() + deltaX);
-        pane.setLayoutY(pane.getLayoutY() + deltaY);
-
-        // Update the last mouse coordinates
-        lastX = event.getSceneX();
-        lastY = event.getSceneY();
-    }
-
-//    private void handleMousePressed(MouseEvent event) {
-//        lastX = event.getSceneX();
-//        lastY = event.getSceneY();
-//    }
-//
-//    private void handleMouseDragged(MouseEvent event) {
-//        double deltaX = event.getSceneX() - lastX;
-//        double deltaY = event.getSceneY() - lastY;
-//
-//        // Adjust the image view's position based on the drag
-//        Pane p = (Pane) event.getSource();
-//        p.setLayoutX(p.getLayoutX() + deltaX);
-//        p.setLayoutY(p.getLayoutY() + deltaY);
-//
-//        lastX = event.getSceneX();
-//        lastY = event.getSceneY();
-//    }
-
-    private void addPoint() {
+    private void setPointsOnMap() {
         double orgLat = 0;
         double orgLon = 0;
 
@@ -711,10 +571,6 @@ public class Main extends Application {
                 r.setLayoutX(picLat);
                 r.setLayoutY(picLon);
 
-//				r.setLayoutX(picLon);
-//				r.setLayoutY(picLat);
-
-
                 pane2.getChildren().add(r);
             }
 
@@ -722,17 +578,14 @@ public class Main extends Application {
 
     }
 
-
     private double calcPicLatX(double orgLat) {
-        double resultX1;
 
+        double resultX1;
         //org_xMax-org_xMin	-->		pic_xMax-pic_xMin
         //		orgLat		-->		resultX1
         //cross multiplying
         System.out.println(orgLat + " before converting");
 
-//		resultX1=((pic_xMax-pic_xMin)*orgLat)	/(org_xMax-org_xMin);
-//					18,506.0011666488910272		/0.168777646458516
         double rightSideEquation = (orgLat - org_xMin) / (org_xMax - org_xMin);
         double calculating = rightSideEquation * (pic_xMax - pic_xMin);
 
@@ -743,13 +596,11 @@ public class Main extends Application {
 
     private double calcPicLonY(double orgLon) {
         double resultY;
-//		resultY=((pic_yMax-pic_yMin)*orgLon)/(org_yMax-org_yMin);
 
         double rightSideEquation = (orgLon - org_yMin) / (org_yMax - org_yMin);
         double calculating = rightSideEquation * (pic_yMax - pic_yMin);
 
         resultY = calculating + pic_yMin;
-
 
         return resultY;
     }
