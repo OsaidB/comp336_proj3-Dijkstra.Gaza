@@ -15,35 +15,25 @@ alQuds:34.47299794307574:31.53336504720566:Street
 Atatra:34.48732411756458:31.559562519125475:City
 Jabalia:34.47978386357475:31.529321977652728:City
 Gaza:34.46684799702597:31.501704065964752:City
-
 SalahEldeen4:34.46638449527752:31.50157964640826:Street
 SalahEldeen5:34.45798775383755:31.497044977271496:Street
 SalahEldeen6:34.452595881191414:31.491037842350703:Street
 SalahEldeen7:34.44228325368635:31.47977188555544:Street
-
 SalahEldeen7_2:34.426792038450245:31.465147635131526:Street
 SalahEldeen7_3:34.3978416958975:31.443368183712135:Street
-
-
 SalahEldeen8:34.38006361907091:31.428925360298862:Street
 SalahEldeen9:34.36010616746152:31.409839539035122:Street
-
 SalahEldeen9_1:34.35386644693335:31.403398416998076:Street
-
-
 SalahEldeen10:34.34561513843073:31.390889170796306:Street
 SalahEldeen11:34.34098964696357:31.384780532217714:Street
 SalahEldeen12:34.33158198591529:31.371858915574673:Street
 SalahEldeen13:34.31422349527478:31.34386727497275:Street
 SalahEldeen14:34.309678425606:31.337550635543543:Street
 SalahEldeen15:34.3165017231404:31.309581749318898:Street
-
 SalahEldeen16_1:34.31289683570601:31.286699603755473:Street
 SalahEldeen16_2:34.30192635843564:31.275156300632155:Street
 SalahEldeen16_3:34.28905274179468:31.270045025415932:Street
 SalahEldeen16_4:34.28088375917653:31.266810672531896:Street
-
-
 alMatahen1: 34.332411307086986:31.39107762157116:Street
 alMatahen2: 34.31605599048152:31.389631415301817:Street
 alMatahen3: 34.311944819513286:31.389423788413108:Street
@@ -52,11 +42,9 @@ alMatahen6: 34.31476577039702:31.378981388910464:Street
 alMatahen7: 34.30588903372711:31.378879573302516:Street
 alMatahen8: 34.3028946824318:31.376219199925718:Street
 alMatahen9: 34.30083934354729:31.378023217576175:Street
-
 gushKatif1: 34.29656138275475:31.375786310815748:Street
 gushKatif2: 34.293705318971426:31.37991591281698:Street
 gushKatif3: 34.28428600307894:31.369116778202542:Street
-
 gushKatif5: 34.27885099964771:31.363733500357014:Street
 gushKatif6: 34.25453516685828:31.338951251665367:Street
 gushKatif7: 34.24442700145748:31.32734428607684:Street
@@ -64,7 +52,6 @@ gushKatif8: 34.24431778714442:31.32128990070466:Street
 gushKatif9: 34.25447818779469:31.311055958719795:Street
 gushKatif10: 34.26306195570581:31.310339476660342:Street
 gushKatif11: 34.27210547536673:31.314149532007825:Street
-
 alImam1: 34.26944254850048:31.31007181018324:Street
 alImam2: 34.26298690431978:31.306133969012865:Street
 alImam3: 34.250229711638276:31.301710816910543:Street
@@ -72,28 +59,21 @@ alImam4: 34.24778336411731:31.304959109770056:Street
 alImam5: 34.244682084418365:31.30735504461668:Street
 alImam6: 34.241034752740255:31.308124185688516:Street
 alImam7: 34.2369817504431:31.307226942321318:Street
-
 alOrouba1:34.27648668647374:31.27027816849965:Street
 alOrouba2:34.260997516839154:31.269150167295127:Street
 alOrouba3:34.25282621334314:31.27523196010362:Street
-
 othman:34.25621596114619:31.28038895442278:Street
-
 omarBenAlkhatab1:34.26359750249749:31.288694997389214:Street
 omarBenAlkhatab2:34.27409224056989:31.29930363251694:Street
 omarBenAlkhatab3:34.281547055081454:31.30969144223881:Street
-
 osamaElnajjar3:34.28641880277243:31.322303815270747:Street
 osamaElnajjar2:34.29570260103505:31.333672741847383:Street
-
 abuBaker1:34.24465048132616:31.293251302367388:Street
-
 abuBaker3:34.24299783601012:31.29913572955444:Street
 abuBaker4:34.238108637902485:31.303971175135047:Street
 abuBaker5:34.23287839815675:31.31822651683354:Street
 abuBaker6:34.23437333386099:31.326436451686487:Street
 abuBaker7:34.23016056060984:31.33137686466443:Street
-
 alRashid1:34.432349799658:31.52184745019637:Street
 alRashid2: 34.37031146884403:31.45706343255703:Street
 alRashid3: 34.37229053157449:31.460153231406597:Street
@@ -104,146 +84,102 @@ alRashid7:34.299724898627886:31.39327727875655:Street
 alRashid8:34.28831042221165:31.382693199105113:Street
 alRashid9:34.254229643799775:31.352019082420362:Street
 alRashid10:34.24589159317581:31.345065147310507:Street
-
 UmAllymoum1:34.46067260324097:31.50043897226501:Street
 UmAllymoum2:34.45781751261574:31.502376006412742:Street
 UmAllymoum3:34.458736104387626:31.504230013038857:Street
-
 Althalatheny1:34.45547885466018:31.506769322935554:Street
 Althalatheny2:34.4473577839161:31.511218472347796:Street
 Althalatheny3:34.44482254802971:31.512595711780204:Street
 Althalatheny4:34.43546079895082:31.51872197250933:Street
-
 BourSaid:34.457833782748864:31.50875863028238:Street
-
 AlNafaq1:34.466179281908666:31.514916256646565:Street
 AlNafaq2:34.46671935138972:31.522798225712712:Street
 AlNafaq3:34.46946111697721:31.525835266142014:Street
 KamalNaser:34.46661511363481:31.527887774725958:Street
-
 aljalal:34.46403627849306:31.52567732230772:Street
-
 shifa:34.45561331542332:31.53285907432766:Street
-
 abuAli:34.4512587731982:31.53664266866697:Street
 alMashtal:34.45357741427922:31.538698933753896:Street
 alMashtal2:34.45054517324803:31.54111138006826:Street
 ahmadOraby:34.454988951222965:31.5462194408513:Street
-
 salahKhalaf1:34.46502978963148:31.539452785432832:Street
 salahKhalaf2:34.463965306980576:31.54043762496543:Street
-
 alToam1:34.48277366387555:31.559489151428053:Street
 alToam2:34.478717426769606:31.553243405995307:Street
 alToam3:34.47514487622727:31.54748019834115:Street
-
 alSalaten1:34.491353969182484:31.555261760999322:Street
 alSalaten2:34.482017162664:31.550672638817137:Street
-
 Zeitoun:34.4496191263176:31.51743580884074:City
-
 omarAlMukhtar1:34.45086081072363:31.514405520318682:Street
 omarAlMukhtar2:34.44219082672894:31.52091972954115:Street
 omarAlMukhtar3:34.437912340086775:31.527905415366053:Street
-
 Al Zahra:34.40171755922877:31.471081002358396:City
 Wadi Ghaza:34.38471915720124:31.46454843478162:City
-
 alShawa1: 34.448764512422386:31.49371131172949:Street
 alShawa2: 34.44099171956949:31.498761942073845:Street
 alShawa3: 34.433944704613126:31.500929710367533:Street
 alShawa4: 34.42819659208401:31.503733782893768:Street
 alShawa5: 34.42314894237684:31.504965675089437:Street
 alShawa6: 34.41764820023874:31.50583747335539:Street
-
 alSenaa: 34.43747480365316:31.5076389180852:Street
-
 cario1: 34.4293037640903:31.511881586491164:Street
 cario2: 34.42581749025154:31.514265270619372:Street
-
 no10_1: 34.41748151504629:31.50091309321076:Street
 no10_2: 34.41957915097601:31.497628164236374:Street
 no10_3: 34.426084543161934:31.491119828963818:Street
 no10_4: 34.43054750166502:31.486927774082037:Street
 no10_5: 34.43724500788252:31.483663136231687:Street
-
 no10_6: 34.414447090765584:31.50267445940213:Street
-
 al-Mughraqa:34.41150454023435:31.466811953243447:City
 Nuseirat Camp:34.3928660328464:31.449892916083623:City
 Bureij:34.40234703284024:31.438785088019948:City
 Maghazi:34.38541594817318:31.421732844290005:City
 Al Zawayda:34.369891579623136:31.431729171689465:City
-
 alMokhayam2_1: 34.374457450948434:31.43242425413914:Street
 alMokhayam2_2: 34.36681851366359:31.42847805017843:Street
-
 alMokhayam2_4: 34.36222678042677:31.433169587306306:Street
-
 alMokhayam2_5: 34.356159547820425:31.43672645727828:Street
 alMokhayam2_6: 34.352543387400196:31.439126492277992:Street
-
 Al Musaddar:34.38376615657505:31.40990530501737:City
-
 SalahEldeen8_2: 34.369803541848334:31.41806758323604:Street
-
-
 Deir al-Balah:34.35084511748609:31.417138088179538:City
 Wadi al-Salqa:34.369891757146185:31.391490345792317:City
-
 kissufim1: 34.35031010733532:31.388177847250635:Street
 kissufim2: 34.35646524564425:31.379472693741093:Street
 kissufim3: 34.36115919130657:31.376237236142842:Street
 kissufim4: 34.37313739398652:31.373688495465267:Street
-
 Al Qarara:34.33181160524295:31.36076576432656:City
-
-
 SalahEldeen17: 34.331387653680174: 31.367495248875784:Street
 SalahEldeen18: 34.32711521984122: 31.355836926764816:Street
 SalahEldeen19: 34.3151438821546: 31.346681830082648:Street
-
 Bani Suheila:34.32521103278715:31.342029782704373:City
-
 elBaheer1: 34.30308795306028:31.344338764443226:Street
-
 elBaheer2: 34.28161112920187:31.355003605165177:Street
 elBaheer3: 34.278956406342324:31.356712524969133:Street
 elBaheer4: 34.2913946706834:31.349245270101306:Street
 elBaheer5: 34.280910651135095:31.361235723075502:Street
-
-
 gamalAbedElnaser2: 34.30813438972339:31.34326007178148:Street
-
 gamalAbedElnaser4: 34.302151455542855:31.342192371710205:Street
-
 gamalAbedElnaser5: 34.30638462908163: 31.35157280584581:Street
 gamalAbedElnaser6: 34.31551016241249: 31.357280873795535:Street
-
 osamaElnajjar1: 34.30598828176731:31.339957896602456:Street
-
 alAwda: 34.32526730707665:31.34275571131865:Street
 absan1: 34.33891251141204:31.32910704047868:Street
 absan2: 34.34684804294693:31.323234161101887:Street
 absan3: 34.36463387114846:31.309241486469997:Street
 alSalam: 34.36120152702722:31.306843592520593:Street
-
 'Abasan al-Jadida:34.344130957053174:31.340981780180922:City
-
 'Abasan al-Kabira:34.3430480530229:31.320495239185306:City
-
 Khuza'a:34.36004745533712:31.307021097065835:City
 Al Fukhkhari:34.3331471840106:31.295223672607726:City
 Khan_Yunis:34.303999975740254:31.346206712124786:City
 al-Mawasi:34.25609303279058:31.348340837575552:City
 Tal al-Sultan:34.24139303276912:31.30919975737915:City
-
 tahaHussein1: 34.27187684630867:31.284813730929518:Street
 tahaHussein2: 34.278392467516376:31.278018289350417:Street
 tahaHussein3: 34.286014104526664:31.274047197669628:Street
 saddam1: 34.273730407623226:31.282486620757556:Street
 saddam2: 34.25850211821723:31.272530620429116:Street
-
 al-Bayuk:34.28158094808626:31.26336977206698:City
 al-Shoka:34.29216448171794:31.253947908635208:City
 al-Nasr:34.30049431161169:31.28921679626908:City
@@ -372,24 +308,18 @@ SalahEldeen9:Wadi al-Salqa
 Wadi al-Salqa:SalahEldeen9
 SalahEldeen9:Deir al-Balah
 Deir al-Balah:SalahEldeen9
-
 SalahEldeen9:SalahEldeen9_1
 SalahEldeen9_1:SalahEldeen9
-
 SalahEldeen9_1:SalahEldeen10
 SalahEldeen10:SalahEldeen9_1
-
 SalahEldeen10:SalahEldeen11
 SalahEldeen11:SalahEldeen10
 SalahEldeen10:kissufim1
 kissufim1:SalahEldeen10
-
 SalahEldeen11:SalahEldeen12
 SalahEldeen12:SalahEldeen11
-
 SalahEldeen11:alMatahen1
 alMatahen1:SalahEldeen11
-
 SalahEldeen12:SalahEldeen17
 SalahEldeen17:SalahEldeen12
 SalahEldeen12:gamalAbedElnaser6
@@ -410,15 +340,12 @@ SalahEldeen15:Al Fukhkhari
 Al Fukhkhari:SalahEldeen15
 SalahEldeen15:SalahEldeen16_1
 SalahEldeen16_1:SalahEldeen15
-
 SalahEldeen16_1:al-Nasr
 al-Nasr:SalahEldeen16_1
 SalahEldeen16_1:SalahEldeen16_2
 SalahEldeen16_2:SalahEldeen16_1
-
 SalahEldeen16_2:SalahEldeen16_3
 SalahEldeen16_3:SalahEldeen16_2
-
 SalahEldeen16_3:tahaHussein3
 tahaHussein3:SalahEldeen16_3
 SalahEldeen16_3:al-Shoka
@@ -427,7 +354,6 @@ SalahEldeen16_3:al-Bayuk
 al-Bayuk:SalahEldeen16_3
 SalahEldeen16_3:SalahEldeen16_4
 SalahEldeen16_4:SalahEldeen16_3
-
 SalahEldeen16_4:al-Bayuk
 al-Bayuk:SalahEldeen16_4
 SalahEldeen16_4:alOrouba1
@@ -458,7 +384,6 @@ gushKatif2:alRashid8
 alRashid8:gushKatif2
 gushKatif3:gushKatif5
 gushKatif5:gushKatif3
-
 gushKatif5:al-Mawasi
 al-Mawasi:gushKatif5
 gushKatif5:elBaheer5
@@ -491,7 +416,6 @@ alImam1:alImam2
 alImam2:alImam1
 alImam2:alImam3
 alImam3:alImam2
-
 alImam3:alImam4
 alImam4:alImam3
 alImam3:Rafah
@@ -530,16 +454,12 @@ omarBenAlkhatab1:Rafah
 Rafah:omarBenAlkhatab1
 omarBenAlkhatab2:omarBenAlkhatab3
 omarBenAlkhatab3:omarBenAlkhatab2
-
 omarBenAlkhatab3:osamaElnajjar3
 osamaElnajjar3:omarBenAlkhatab3
-
 osamaElnajjar3:osamaElnajjar2
 osamaElnajjar2:osamaElnajjar3
-
 osamaElnajjar2:gamalAbedElnaser4
 gamalAbedElnaser4:osamaElnajjar2
-
 osamaElnajjar2:osamaElnajjar1
 osamaElnajjar1:osamaElnajjar2
 abuBaker1:abuBaker3
@@ -558,10 +478,8 @@ abuBaker7:alRashid10
 alRashid10:abuBaker7
 alRashid1:omarAlMukhtar3
 omarAlMukhtar3:alRashid1
-
 alRashid1:Althalatheny4
 Althalatheny4:alRashid1
-
 alRashid1:cario2
 cario2:alRashid1
 alRashid2:alRashid3
@@ -582,7 +500,6 @@ alRashid5:no10_6
 no10_6:alRashid5
 alRashid5:Al Zahra
 Al Zahra:alRashid5
-
 alRashid6:alMokhayam2_6
 alMokhayam2_6:alRashid6
 alRashid6:Deir al-Balah
@@ -597,7 +514,6 @@ alRashid9:al-Mawasi
 al-Mawasi:alRashid9
 alRashid9:alRashid10
 alRashid10:alRashid9
-
 UmAllymoum1:UmAllymoum2
 UmAllymoum2:UmAllymoum1
 UmAllymoum2:UmAllymoum3
@@ -618,10 +534,8 @@ Althalatheny3:Althalatheny4
 Althalatheny4:Althalatheny3
 Althalatheny3:alSenaa
 alSenaa:Althalatheny3
-
 Althalatheny4:cario1
 cario1:Althalatheny4
-
 BourSaid:AlNafaq1
 AlNafaq1:BourSaid
 BourSaid:omarAlMukhtar1
@@ -654,25 +568,20 @@ alMashtal2:ahmadOraby
 ahmadOraby:alMashtal2
 alMashtal2:omarAlMukhtar3
 omarAlMukhtar3:alMashtal2
-
 ahmadOraby:salahKhalaf2
 salahKhalaf2:ahmadOraby
 salahKhalaf1:salahKhalaf2
 salahKhalaf2:salahKhalaf1
 salahKhalaf1:alToam3
 alToam3:salahKhalaf1
-
 alToam1:alToam2
 alToam2:alToam1
-
 alToam2:alToam3
 alToam3:alToam2
 alToam2:alSalaten2
 alSalaten2:alToam2
-
 alSalaten1:alSalaten2
 alSalaten2:alSalaten1
-
 Zeitoun:omarAlMukhtar1
 omarAlMukhtar1:Zeitoun
 Zeitoun:omarAlMukhtar2
@@ -681,7 +590,6 @@ omarAlMukhtar1:omarAlMukhtar2
 omarAlMukhtar2:omarAlMukhtar1
 omarAlMukhtar2:omarAlMukhtar3
 omarAlMukhtar3:omarAlMukhtar2
-
 Al Zahra:al-Mughraqa
 al-Mughraqa:Al Zahra
 Al Zahra:Wadi Ghaza
@@ -720,10 +628,8 @@ no10_3:no10_4
 no10_4:no10_3
 no10_4:no10_5
 no10_5:no10_4
-
 al-Mughraqa:Nuseirat Camp
 Nuseirat Camp:al-Mughraqa
-
 Nuseirat Camp:Al Zahra
 Al Zahra:Nuseirat Camp
 Bureij:Maghazi
@@ -738,15 +644,12 @@ alMokhayam2_1:alMokhayam2_2
 alMokhayam2_2:alMokhayam2_1
 alMokhayam2_2:alMokhayam2_4
 alMokhayam2_4:alMokhayam2_2
-
 alMokhayam2_4:alMokhayam2_5
 alMokhayam2_5:alMokhayam2_4
 alMokhayam2_5:alMokhayam2_6
 alMokhayam2_6:alMokhayam2_5
-
 Al Musaddar:Wadi al-Salqa
 Wadi al-Salqa:Al Musaddar
-
 Deir al-Balah:alMokhayam2_2
 alMokhayam2_2:Deir al-Balah
 Wadi al-Salqa:kissufim1
@@ -763,7 +666,6 @@ kissufim3:Wadi al-Salqa
 Wadi al-Salqa:kissufim3
 kissufim3:kissufim4
 kissufim4:kissufim3
-
 Al Qarara:SalahEldeen17
 SalahEldeen17:Al Qarara
 Al Qarara:SalahEldeen18
@@ -794,17 +696,14 @@ elBaheer2:elBaheer5
 elBaheer5:elBaheer2
 elBaheer2:elBaheer4
 elBaheer4:elBaheer2
-
 gamalAbedElnaser2:osamaElnajjar1
 osamaElnajjar1:gamalAbedElnaser2
 gamalAbedElnaser2:Khan_Yunis
 Khan_Yunis:gamalAbedElnaser2
-
 gamalAbedElnaser5:gamalAbedElnaser6
 gamalAbedElnaser6:gamalAbedElnaser5
 gamalAbedElnaser5:Khan_Yunis
 Khan_Yunis:gamalAbedElnaser5
-
 osamaElnajjar:gamalAbedElnaser4
 gamalAbedElnaser4:osamaElnajjar
 alAwda:absan1
@@ -819,15 +718,12 @@ absan3:Khuza'a
 Khuza'a:absan3
 alSalam:Khuza'a
 Khuza'a:alSalam
-
 'Abasan al-Kabira:absan2
 absan2:'Abasan al-Kabira
-
 Al Fukhkhari:SalahEldeen16
 SalahEldeen16:Al Fukhkhari
 Khan_Yunis:elBaheer1
 elBaheer1:Khan_Yunis
-
 tahaHussein1:saddam1
 saddam1:tahaHussein1
 tahaHussein2:saddam1

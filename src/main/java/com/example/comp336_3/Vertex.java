@@ -3,26 +3,26 @@ package com.example.comp336_3;
 import java.util.LinkedList;
 
 public class Vertex {
-	College college;
+	Location location;
 	Vertex previous;
 	int num;
-	double distance=Integer.MAX_VALUE;
+	double distance=Integer.MAX_VALUE;//
 	boolean visited;
-	LinkedList<edges> e = new LinkedList<edges>();
+	LinkedList<Edge> adjacentsList = new LinkedList<Edge>();
 
-	public Vertex(College college, int number) {
+	public Vertex(Location location, int number) {
 		super();
-		this.college = college;
+		this.location = location;
 		this.num = number;
 	}
 
-	public College getCollege() {
-		return college;
+	public Location getLocation() {
+		return location;
 	}
 
 
-	public void setCollege(College college) {
-		this.college = college;
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 
 
@@ -42,27 +42,27 @@ public class Vertex {
 		this.distance = distance;
 	}
 
-	public LinkedList<edges> getE() {
-		return e;
+	public LinkedList<Edge> getAdjacentsList() {
+		return adjacentsList;
 	}
 
-	public void setE(LinkedList<edges> e) {
-		this.e = e;
+	public void setAdjacentsList(LinkedList<Edge> adjacentsList) {
+		this.adjacentsList = adjacentsList;
 	}
 
 	public boolean FindEdge(String ss) {
 
-		for (int i = 0; i < e.size(); i++) {
-			if (e.get(i).getD().getCollege().getName().compareToIgnoreCase(ss) == 0)
+		for (int i = 0; i < adjacentsList.size(); i++) {
+			if (adjacentsList.get(i).getD().getLocation().getName().compareToIgnoreCase(ss) == 0)
 				return true;
 		}
 		return false;
 	}
 
 	public String ttoString() {
-		String r = college.getName()+":";
-		for (int i = 0; i < e.size(); i++) {
-			r = r + e.get(i).desination.college.getName() + "\n";
+		String r = location.getName()+":";
+		for (int i = 0; i < adjacentsList.size(); i++) {
+			r = r + adjacentsList.get(i).targetVer.location.getName() + "\n";
 		}
 		return r;
 	}

@@ -13,662 +13,923 @@ import java.util.PriorityQueue;
 import java.util.Scanner;
 
 import javafx.application.Application;
-import javafx.beans.property.DoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Line;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ScrollPane;
 
 
 public class Main extends Application {
-	public static File file;
-	static ComboBox<String> sourceText = new ComboBox<String>();
-	static ComboBox<String> targetText = new ComboBox<String>();
-//	static ToggleButton click = new ToggleButton("Click in map");
-//	static ToggleButton combo = new ToggleButton("Combo Box");
-	static int numOfPointChoice = 0;
-	static Pane pane2 = new Pane();
-	private Alert error = new Alert(AlertType.ERROR);
-	ArrayList<PathTable> tableData = new ArrayList<PathTable>();
-	ObservableList<PathTable> data = FXCollections.observableArrayList(tableData);
-	static ArrayList<Vertex> Colleges = new ArrayList<>();
-////////////////////////////////////////////////////////////////////////////////////
-	//original coordinates
-//31.561113913279325, 34.1707489947603
-//		31.614521165206845, 34.4331899801754
-//		31.547757318477323, 34.575060834817954
-	//{ top-left }=(org_xMin,org_yMin)
-	static double org_xMin=34.1707489947603;/*measure X {Minimum}*/	static double org_xMax=34.575060834817954;//*measure X {Maximum}*//31.213991245812142
-	static double org_yMin=31.614521165206845;//measure Y {Minimum}31.208163033163977
-	static double org_yMax=31.208163033163977;//measure Y {Maximum}34.69334186844351
-//	31.208163033163977, 34.28709395878486
-	//the corners { top-left } & { top-right } & { bottom-left }DONE.
-//	31.6137368679443, 34.69334186844351
-//	31.382768892270658, 34.1744884199424
-	//last corner { bottom-right }=(org_xMax,org_yMax)
-////////////////////////////////////////////////////////////////////////////////////
-	//picture coordinates
+    public static File file;
+    static ComboBox<String> sourceCombo = new ComboBox<String>();
+    static ComboBox<String> targetCombo = new ComboBox<String>();
+    static ToggleButton click = new ToggleButton("Click in map");
+    static ToggleButton combo = new ToggleButton("Combo Box");
+    ////////////////////////////////////////////////////////////////////////////////////
+    private double lastX, lastY;
+    ////////////////////////////////////////////////////////////////////////////////////
+    static int numOf_SelectedCities = 0;
+    static Pane pane2 = new Pane();
+    private Alert error = new Alert(AlertType.ERROR);
+    ArrayList<PathTable> tableData = new ArrayList<PathTable>();
+    ObservableList<PathTable> data = FXCollections.observableArrayList(tableData);
+    static ArrayList<Vertex> citiesAndStreets = new ArrayList<>();
+    ////////////////////////////////////////////////////////////////////////////////////
+    //original coordinates
+    static double org_xMin = 34.1707489947603;//measure X {Minimum}
+    static double org_xMax = 34.575060834817954;//measure X {Maximum}
+    static double org_yMin = 31.614521165206845;//measure Y {Minimum}
+    static double org_yMax = 31.208163033163977;//measure Y {Maximum}
 
-	//{ top-left }=(pic_xMin,pic_yMin)
-	static double pic_xMin=0;/*measure X {Minimum}*/	static double pic_xMax=589;//*measure X {Maximum}*//
-	static double pic_yMin=0;//measure Y {Minimum}
-	static double pic_yMax=695;//measure Y {Maximum}695
-	//the corners { top-left } & { top-right } & { bottom-left }DONE.
+    ////////////////////////////////////////////////////////////////////////////////////
+    //picture coordinates
+    static double pic_xMin = 0;//measure X {Minimum}
+    static double pic_xMax = 589;//measure X {Maximum}
+    static double pic_yMin = 0;//measure Y {Minimum}
+    static double pic_yMax = 695;//measure Y {Maximum}
+    ////////////////////////////////////////////////////////////////////////////////////
+    Button run;
+    Button reset;
+    AnimatedZoomOperator zoomOperator = new AnimatedZoomOperator();
+    boolean flag_CrossroadsVisible = false;
 
-	//last corner { bottom-right }=(pic_xMax,pic_yMax)
-////////////////////////////////////////////////////////////////////////////////////
-	@Override
-	public void start(Stage primaryStage) throws URISyntaxException {
-		primaryStage.setTitle("OsaidB_1203115");
+    @Override
+    public void start(Stage primaryStage) throws URISyntaxException, FileNotFoundException {
 
+        primaryStage.setTitle("OsaidB_1203115");
 
+        //main pane that contains everything
+        BorderPane mainPane = new BorderPane();
+        mainPane.setPadding(new Insets(10));
 
-		// Create panel
-		StackPane zoomPane = new StackPane();
-		zoomPane.getChildren().add(new Circle(100, 100, 10));
-		zoomPane.getChildren().add(new Circle(200, 200, 20));
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//0
+        //making all of the lift side of the interface
 
-// Create operator
-		AnimatedZoomOperator zoomOperator = new AnimatedZoomOperator();
+        //0.1   :   setting up Image and making it zoomable
+        String imageUrlD = getClass().getClassLoader().getResource("Gaza.png").toExternalForm();
+        Image mG = new Image(imageUrlD);
+        ImageView image = new ImageView(mG);
+        pane2.getChildren().add(image);
 
-// Listen to scroll events (similarly you could listen to a button click, slider, ...)
-		zoomPane.setOnScroll(new EventHandler<ScrollEvent>() {
-			@Override
-			public void handle(ScrollEvent event) {
-				double zoomFactor = 1.5;
-				if (event.getDeltaY() <= 0) {
-					// zoom out
-					zoomFactor = 1 / zoomFactor;
-				}
-				zoomOperator.zoom(zoomPane, zoomFactor, event.getSceneX(), event.getSceneY());
-			}
-		});
+        StackPane zoomableImagePane = new StackPane();
+        zoomableImagePane.getChildren().add(new Circle(100, 100, 10));
+        zoomableImagePane.getChildren().add(new Circle(200, 200, 20));
+        zoomableImagePane.setOnScroll(new EventHandler<ScrollEvent>() {
+            @Override
+            public void handle(ScrollEvent event) {
+                double zoomFactor = 1.5;
+                if (event.getDeltaY() <= 0) {
+                    // zoom out
+                    zoomFactor = 1 / zoomFactor;
+                }
+                zoomOperator.zoom(zoomableImagePane, zoomFactor, event.getSceneX(), event.getSceneY());
+            }
+        });
 
+        zoomableImagePane.getChildren().add(pane2);
+        zoomableImagePane.setAlignment(Pos.CENTER);
+/////////////////////////////////////////////////////////////////////
+        //0.2   :   putting zoomableImagePane inside a ScrollPane
+        ScrollPane finalImagePane = new ScrollPane(zoomableImagePane);
+        //not to make it scrollable,
+        // but to make like a boarder around the map
 
+/////////////////////////////////////////////////////////////////////
+        //0.3   :   setting up the two Buttons under the "finalImagePane"
+        Button btnResetImage = new Button("Reset View");
+        btnResetImage.setOnAction(event -> resetPane(zoomableImagePane));
 
+        Button btnShowCross = new Button("Show Crossroads");
+        btnShowCross.setOnAction(event -> showCrossroads());
 
+/////////////////////////////////////////////////////////////////////
+        //0.4_summing   :   finalImagePane  +   btns
+        VBox vbLeftSide = new VBox(finalImagePane, btnResetImage, btnShowCross);
+        vbLeftSide.setAlignment(Pos.BASELINE_RIGHT);
+        vbLeftSide.setSpacing(20);
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//1
+        //getting the file and starts reading it
+        Path filePath = Paths.get(Main.class.getClassLoader().getResource("Data.txt").toURI());
+        file = new File(filePath.toUri());
+        readFile(file);
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//2
+        //assigning {setOnAction} for "sourceCombo" AND targetCombo
+        //2.1
+        sourceCombo.setOnAction(e -> {
 
-		String imageUrlD = getClass().getClassLoader().getResource("Gaza.png").toExternalForm();
-		Image mG = new Image(imageUrlD);
+            for (Vertex vertex : citiesAndStreets) {
+                String type = vertex.getLocation().getType();
+                if (type.equals("City") && vertex.getLocation().getName().equals(sourceCombo.getSelectionModel().getSelectedItem())) {
 
+                    String fromPinUrl = getClass().getClassLoader().getResource("fromPin.png").toExternalForm();
+                    Image imageFromPin = new Image(fromPinUrl);
+                    ImageView vImageFromPin = new ImageView(imageFromPin);
 
+                    vImageFromPin.setFitHeight(32);
+                    vImageFromPin.setFitWidth(16);
 
+                    vertex.getLocation().getRadioButton().setGraphic(vImageFromPin);
+                    vertex.getLocation().getRadioButton().setSelected(true);//////////////////////////////////
 
-//		Image m = new Image("H:\\.BZU MAIN\\.BZU\\COMP336 - Copy\\COMP336_3 RESOURCES\\BZU.gif");
-		ImageView image = new ImageView(mG);
-//		image.setFitWidth(587.52);//955
-//		image.setFitHeight(694.08); //536
+                    numOf_SelectedCities += 1;
+                    vertex.getLocation().setSourceOrTarget(true);
+                    if (numOf_SelectedCities == 2) {
+                        lockAllCities();
+                        run.setDisable(false);
+                        reset.setDisable(false);
 
+                        targetCombo.setDisable(true);
+                        sourceCombo.setDisable(true);
+                        vertex.getLocation().getRadioButton().setDisable(false);
+                    } else if (numOf_SelectedCities == 1) {
+                        reset.setDisable(false);
+                    }
 
-//		image.setFitHeight(536); //536
-//		image.setFitWidth(955);//955
+                    break;
+                }
+            }
 
-
-		pane2.getChildren().add(image);
-///////////////////////////////////////////////////////////////////////////////////
-
-		Label title = new Label("OsaidB_1203115");
-//		title.setStyle("-fx-background-color: gray");
-		title.setFont(Font.font("Verdana", FontWeight.BOLD, FontPosture.REGULAR, 0));
-		title.setPadding(new Insets(15));
-
-
-  		Path filePath = Paths.get(Main.class.getClassLoader().getResource("Data.txt").toURI());
-       	file = new File(filePath.toUri());
-//        readFile(file);
+//            for (int i = 0; i < citiesAndStreets.size(); i++) {
+//                String type = citiesAndStreets.get(i).getLocation().getType();
+//                if (type.equals("City") && citiesAndStreets.get(i).getLocation().getName().equals(sourceCombo.getSelectionModel().getSelectedItem())) {
 //
-//		file = new File("H:\\.BZU MAIN\\.BZU\\COMP336 - Copy\\COMP336_3 RESOURCES\\Data.txt");
-		readFile(file);
-
-		BorderPane pane = new BorderPane();
-		pane.setPadding(new Insets(10));
-		pane.setTop(title);
-		BorderPane.setAlignment(title, Pos.CENTER);
-
-		Label choose = new Label("Choose College by :");
-		choose.setPadding(new Insets(15));
+//                    String fromPinUrl = getClass().getClassLoader().getResource("fromPin.png").toExternalForm();
+//                    Image imageFromPin = new Image(fromPinUrl);
+//                    ImageView vImageFromPin = new ImageView(imageFromPin);
 //
-//		ToggleGroup tg = new ToggleGroup();
-//		click.setToggleGroup(tg);
-//		combo.setToggleGroup(tg);
+//                    vImageFromPin.setFitHeight(32);
+//                    vImageFromPin.setFitWidth(16);
 //
+//                    citiesAndStreets.get(i).getLocation().getRadioButton().setGraphic(vImageFromPin);
+//                    citiesAndStreets.get(i).getLocation().getRadioButton().setSelected(true);//////////////////////////////////
 //
-//		click.setOnAction(e -> {
-//			click.setStyle("-fx-border-radius: 25 25 25 25;\n" + "-fx-font-size: 14;\n"
-//					+ "-fx-font-family: Times New Roman;\n" + "-fx-font-weight: Bold;\n" + " -fx-text-fill: #ff6800;\n"
-//					+ "-fx-background-color: #d8d9e0;\n" + "-fx-border-color: #d8d9e0;\n" + "-fx-border-width:  3.5;"
-//					+ "-fx-background-radius: 25 25 25 25");
-//			combo.setStyle("-fx-border-radius: 25 25 25 25;\n" + "-fx-font-size: 14;\n"
-//					+ "-fx-font-family: Times New Roman;\n" + "-fx-font-weight: Bold;\n"
-//					+ "-fx-background-color: #f6f6f6;\n" + "-fx-border-color: #d8d9e0;\n" + "-fx-border-width:  3.5;"
-//					+ "-fx-background-radius: 25 25 25 25");
+//                    numOf_SelectedCities += 1;
+//                    citiesAndStreets.get(i).getLocation().setSourceOrTarget(true);
+//                    if (numOf_SelectedCities == 2) {
+//                        lockAllCities();
+//                        run.setDisable(false);
+//                        reset.setDisable(false);
 //
-//		});
+//                        targetCombo.setDisable(true);
+//                        sourceCombo.setDisable(true);
+//                        citiesAndStreets.get(i).getLocation().getRadioButton().setDisable(false);
+//                    } else if (numOf_SelectedCities == 1) {
+//                        reset.setDisable(false);
+//                    }
 //
-//		combo.setOnAction(e -> {
-//			combo.setStyle("-fx-border-radius: 25 25 25 25;\n" + "-fx-font-size: 14;\n"
-//					+ "-fx-font-family: Times New Roman;\n" + "-fx-font-weight: Bold;\n" + " -fx-text-fill: #ff6800;\n"
-//					+ "-fx-background-color: #d8d9e0;\n" + "-fx-border-color: #d8d9e0;\n" + "-fx-border-width:  3.5;"
-//					+ "-fx-background-radius: 25 25 25 25");
-//			click.setStyle("-fx-border-radius: 25 25 25 25;\n" + "-fx-font-size: 14;\n"
-//					+ "-fx-font-family: Times New Roman;\n" + "-fx-font-weight: Bold;\n"
-//					+ "-fx-background-color: #f6f6f6;\n" + "-fx-border-color: #d8d9e0;\n" + "-fx-border-width:  3.5;"
-//					+ "-fx-background-radius: 25 25 25 25");
-//
-//		});
+//                    break;
+//                }
+//            }
 
-		sourceText.setOnAction(e -> {
-//
-//			if (/*a collage selected-> use it in combobox*/) {
-//
-//			}
+        });
+
+        //2.2
+        targetCombo.setOnAction(e -> {
+
+            for (Vertex v : citiesAndStreets) {
+                String type = v.getLocation().getType();
 
 
-				for (int i = 0; i < Colleges.size(); i++) {
-					if (Colleges.get(i).getCollege().getName().equals(sourceText.getSelectionModel().getSelectedItem())) {
+                if (type.equals("City") && v.getLocation().getName().equals(targetCombo.getSelectionModel().getSelectedItem())) {
 
-						ImageView vi0 = new ImageView(new Image("H:\\.BZU MAIN\\.BZU\\COMP336 - Copy\\COMP336_3 RESOURCES\\location-pin.png"));
-						vi0.setFitHeight(16);
-						vi0.setFitWidth(16);
+                    String toPinUrl = getClass().getClassLoader().getResource("toPin.png").toExternalForm();
+                    Image imageToPin = new Image(toPinUrl);
+                    ImageView vImageToPin = new ImageView(imageToPin);
 
-						Colleges.get(i).getCollege().getRadioButton().setGraphic(vi0);
-						Colleges.get(i).getCollege().getRadioButton().setSelected(true);//////////////////////////////////
-						numOfPointChoice += 1;
-//						if (numOfPointChoice == 2) {
-//							lock();
-//						}
-						break;
-					}
-				}
+                    vImageToPin.setFitHeight(32);
+                    vImageToPin.setFitWidth(16);
 
-		});
+                    v.getLocation().getRadioButton().setGraphic(vImageToPin);
+                    v.getLocation().getRadioButton().setSelected(true);
 
-//		targetText.setOnAction(e -> {
-//
-//				for (int i = 0; i < Colleges.size(); i++) {
-//					if (Colleges.get(i).getCollege().getName()
-//							.equals(targetText.getSelectionModel().getSelectedItem())) {
-//						ImageView vi0 = new ImageView(new Image(
-//								"C:\\Users\\97059\\Desktop\\.BZU\\COMP336\\COMP336_3 RESOURCES\\location-pin (2).png"));
-//						vi0.setFitHeight(16);
-//						vi0.setFitWidth(16);
-//						Colleges.get(i).getCollege().getRadioButton().setGraphic(vi0);
-//						Colleges.get(i).getCollege().getRadioButton().setSelected(true);
-//						numOfPointChoice += 1;
-//						if (numOfPointChoice == 2) {
-//							lock();
-//						}
-//						break;
-//					}
-//				}
-//
-//		});
-		targetText.setOnAction(e -> {
+                    numOf_SelectedCities += 1;
+                    v.getLocation().setSourceOrTarget(true);
+                    if (numOf_SelectedCities == 2) {
+                        lockAllCities();
+                        run.setDisable(false);
+                        reset.setDisable(false);
 
-			for (Vertex v:Colleges) {
-				if (v.getCollege().getName()
-						.equals(targetText.getSelectionModel().getSelectedItem())) {
+                        targetCombo.setDisable(true);
+                        sourceCombo.setDisable(true);
+                        v.getLocation().getRadioButton().setDisable(false);
+                    } else if (numOf_SelectedCities == 1) {
+                        reset.setDisable(false);
+                    }
 
-					ImageView vi0 = new ImageView(new Image("H:\\.BZU MAIN\\.BZU\\COMP336 - Copy\\COMP336_3 RESOURCES\\location-pin (2).png"));
-
-					vi0.setFitHeight(16);
-					vi0.setFitWidth(16);
-
-					v.getCollege().getRadioButton().setGraphic(vi0);
-					v.getCollege().getRadioButton().setSelected(true);
-					numOfPointChoice += 1;
-					if (numOfPointChoice == 2) {
-						lock();
-					}
-					break;
-				}
+                    break;
+                }
 
 
-			}
+            }
+        });
 
-//			for (int i = 0; i < Colleges.size(); i++) {
-//
-//			}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//3
+        //creating interface
+        //3.1   :   sources
+        Label source = new Label("Source :");
+        source.setStyle("-fx-text-fill: #dfdbd8;");
+        source.setDisable(true);
+        source.setPadding(new Insets(7));
 
-		});
+        sourceCombo.setMinHeight(30);
+        sourceCombo.setMinWidth(440);
 
-		/////////////////////////////////////////////////////////////////////
-		Label source = new Label("Source :");
-		source.setPadding(new Insets(7));
-		sourceText.setMinWidth(150);
-		for (int i = 0; i < Colleges.size(); i++) {
-			sourceText.getItems().add(Colleges.get(i).getCollege().getName());
-		}
+        //filling sourceCombo with data
+        for (Vertex v : citiesAndStreets) {
+            if (v.getLocation().getType().equals("City")) {
+                sourceCombo.getItems().add(v.getLocation().getName());
+            }
+        }
+        VBox vbSources = new VBox(source, sourceCombo);
+        vbSources.setAlignment(Pos.TOP_LEFT);
+/////////////////////////////////////////////////////////////////////
+        //3.2   :   targets
+        Label target = new Label("Target :");
+
+        target.setStyle("-fx-text-fill: #dfdbd8;");
+        target.setDisable(true);
+        target.setPadding(new Insets(7));
+
+        targetCombo.setMinHeight(30);
+        targetCombo.setMinWidth(440);
+
+        //filling targetCombo with data
+        for (Vertex v : citiesAndStreets) {
+            if (v.getLocation().getType().equals("City")) {
+                targetCombo.getItems().add(v.getLocation().getName());
+            }
+        }
+        VBox vbTargets = new VBox(target, targetCombo);
+        vbTargets.setAlignment(Pos.TOP_LEFT);
+/////////////////////////////////////////////////////////////////////
+        //3.3   :   run/reset
+        run = new Button("Run");
+        run.setMinWidth(440);
+        run.setDisable(true);
+        run.setStyle("-fx-font-size: 16px;-fx-font-weight: bold;");
+
+        reset = new Button("Reset");
+        reset.setMinWidth(440);
+        reset.setDisable(true);
+        reset.setStyle("-fx-font-size: 16px;-fx-font-weight: bold;");
+
+        VBox vbBTNS = new VBox(20, run, reset);
+        vbBTNS.setAlignment(Pos.CENTER);
+/////////////////////////////////////////////////////////////////////
+        //3.3_summingSection1   :   summing up {sources,targets,run/reset}
+        VBox vbInputs = new VBox(vbSources, vbTargets, vbBTNS);
+        vbInputs.setPadding(new Insets(20));
+        vbInputs.setSpacing(30);
+        vbInputs.setStyle("-fx-border-color: #9d7463; -fx-border-width: 2px;");
+/////////////////////////////////////////////////////////////////////
+        //3.4   :   results Section
+        Button lblResultsSec = new Button("Results");
+        lblResultsSec.setDisable(true);
+        lblResultsSec.setPrefWidth(480);
+        lblResultsSec.setMinHeight(50);
+        lblResultsSec.setStyle("-fx-background-color: #455954 ;-fx-opacity: 1;-fx-font-size: 20px;-fx-font-weight: bold;");
+
+        //////////////////////
+        Label lblPath = new Label("Shortest Path:");
+        lblPath.setPadding(new Insets(7));
+        lblPath.setPadding(new Insets(7));
+
+        TextArea resultPath_txtAr = new TextArea();
+        resultPath_txtAr.setStyle("-fx-font-size: 20px;");
+        resultPath_txtAr.setPrefWidth(280);
+
+        HBox hBox_path = new HBox(lblPath, resultPath_txtAr);
+        hBox_path.setSpacing(57);
+        hBox_path.setAlignment(Pos.TOP_LEFT);
+        //////////////////////
+        Label lblDistance = new Label("Distance (in meters):");
+        lblDistance.setStyle("-fx-font-size: 20px;");
+        lblDistance.setMinHeight(50);
+        lblDistance.setAlignment(Pos.CENTER_LEFT);
+        lblDistance.setPadding(new Insets(7));
+
+        TextField txtDistance = new TextField();
+        txtDistance.setMinHeight(40);
+        txtDistance.setPrefWidth(280);
+        txtDistance.setEditable(false);
+
+        HBox hBox_distance = new HBox(lblDistance, txtDistance);
+        hBox_distance.setAlignment(Pos.CENTER_LEFT);
+/////////////////////////////////////////////////////////////////////
+        //3.4_summingSection2   :   summing up results Section
+        VBox vbResult = new VBox(lblResultsSec, hBox_path, hBox_distance);
+        vbResult.setSpacing(18);
+        vbResult.setStyle("-fx-border-color: #9d7463; -fx-border-width: 2px;");
+/////////////////////////////////////////////////////////////////////
+        //3.5_summingTheTwoSec   :   {source/target}+{results Section}
+        VBox vb_TheTwoSections = new VBox(vbInputs, vbResult);
+        vb_TheTwoSections.setSpacing(7);
 
 
-		Label target = new Label("Target :");
-		target.setPadding(new Insets(7));
-		targetText.setMinWidth(150);
-		for (int i = 0; i < Colleges.size(); i++) {
-			targetText.getItems().add(Colleges.get(i).getCollege().getName());
-		}
-
-		HBox h1 = new HBox(source, sourceText);
-		h1.setAlignment(Pos.CENTER);
-
-		HBox h2 = new HBox(target, targetText);
-		h2.setAlignment(Pos.CENTER);
-		/////////////////////////////////////////////////////////////////////
-
-		Button run = new Button("Calculate");
-		Button reset = new Button("Reset");
-
-		HBox butBox = new HBox(20, run, reset);
-		butBox.setAlignment(Pos.CENTER);
-
-		/////////////////////////////////////////////////////////////////////
-
-		Label path = new Label("Shortest Path:");
-		path.setPadding(new Insets(7));
-		// path.setMinHeight(200);
-		path.setPadding(new Insets(7));
-
-		TextArea t = new TextArea();
-		t.setPrefWidth(300);
-		t.setPrefHeight(300);
-
-		HBox h3 = new HBox(path, t);
-		h3.setAlignment(Pos.CENTER);
-
-		/////////////////////////////////////////////////////////////////////
-
-		Label distance = new Label("Distance (in meters):");
-		distance.setPadding(new Insets(7));
-		TextField distanceText = new TextField();
-
-		HBox h4 = new HBox(distance, distanceText);
-		h4.setAlignment(Pos.CENTER);
-
-		/////////////////////////////////////////////////////////////////////
-
-		VBox v = new VBox(30, h1, h2, butBox);		//1
-		v.setAlignment(Pos.CENTER);
-		v.setPadding(new Insets(10));
-
-		VBox v1 = new VBox(30, h3, h4);				//2
-		v1.setAlignment(Pos.CENTER);
-		v1.setPadding(new Insets(10));
-
-		VBox mix = new VBox(10, v, v1);				//1+2
-		mix.setAlignment(Pos.CENTER);
-
+        VBox vbRightSide = new VBox(10, vb_TheTwoSections);                //1+2
+        vbRightSide.setAlignment(Pos.CENTER);
+        vbRightSide.setSpacing(20);
 //		VBox vMap = new VBox(pane2);					///////
 //		vMap.setAlignment(Pos.CENTER);
 
-		HBox mainBox = new HBox(pane2, mix);		//all
-		mainBox.setAlignment(Pos.CENTER);
 
-		/////////////////////////////////////////////////////////////////////
-		pane.setCenter(mainBox);
-
-		addPoint();///////////////////////////////////////////////////////////
-
-		run.setOnAction(e -> {
-			Vertex vertx1 = null;
-			Vertex vertx2 = null;
-
-			String s1 = sourceText.getValue();
-			System.out.println(s1);
-
-			String s2 = targetText.getValue();
-			System.out.println(s2);
-
-			for (int i = 0; i < Colleges.size(); i++) {
-				if (Colleges.get(i).getCollege().getName().equals(s1)) {
-					vertx1 = Colleges.get(i);
-				}
-				if (Colleges.get(i).getCollege().getName().equals(s2)) {
-					vertx2 = Colleges.get(i);
-				}
-			}
-
-			if (vertx1 != null && vertx2 != null) {
-				int i = drawLine(Dijkstra(vertx1, vertx2));
-				if (i == 0)
-					distanceText.setText("0");
-				else if (i == 1)
-					distanceText.setText(String.valueOf(vertx2.distance));
-				data = FXCollections.observableArrayList(tableData);
-				t.setText("" + data);
-
-			}
-
-		});
-
-		reset.setOnAction(l -> {
-			pane2.getChildren().clear();
-
-			targetText.getSelectionModel().select(null);
-			sourceText.getSelectionModel().select(null);
-
-			distanceText.setText("");
-
-			data.clear();
-			tableData.clear();
-
-			numOfPointChoice = 0;
-
-			pane2.getChildren().add(image);
-
-			Image Image = new Image("H:\\.BZU MAIN\\.BZU\\COMP336 - Copy\\COMP336_3 RESOURCES\\location-pin (1).png");
+//        // Create panel
+//        StackPane zoomPane = new StackPane();
+//
+//        zoomPane.getChildren().add(new Circle(100, 100, 10));
+//        zoomPane.getChildren().add(new Circle(200, 200, 20));
+//
+//        zoomPane.setOnScroll(new EventHandler<ScrollEvent>() {
+//            @Override
+//            public void handle(ScrollEvent event) {
+//                double zoomFactor = 1.5;
+//                if (event.getDeltaY() <= 0) {
+//                    // zoom out
+//                    zoomFactor = 1 / zoomFactor;
+//                }
+//                zoomOperator.zoom(zoomPane, zoomFactor, event.getSceneX(), event.getSceneY());
+//            }
+//        });
+//
+//
+////        pane2.setOnMousePressed(this::handleMousePressed);
+////        pane2.setOnMouseDragged(this::handleMouseDragged);
+//        // Listen to mouse events for dragging
+//        pane2.setOnMousePressed(zoomOperator::handleMousePressed);
+//        pane2.setOnMouseDragged(event -> zoomOperator.handleMouseDragged(event, pane2));
+//
+////        zoomPane.center
+//        zoomPane.getChildren().add(pane2);
+//        zoomPane.setAlignment(Pos.CENTER);
+//
+//
+//        ScrollPane pane2Scroll = new ScrollPane(zoomPane);
+////        pane2Scroll.setAlignment(Pos.CENTER);
+////        pane2Scroll.setPadding(new Insets(30));
+//
+////        ScrollPane pane2Scroll = new ScrollPane(new StackPane(pane2));
+//
+//        Button resetButton = new Button("Reset View");
+//        resetButton.setOnAction(event -> resetPane(zoomPane));
+//
+//        Button crossroads = new Button("Show Crossroads");
+//        crossroads.setOnAction(event -> showCrossroads());
+//
+//        // Create a layout for the button
+//        VBox buttonLayout = new VBox(pane2Scroll, resetButton, crossroads);
+//        buttonLayout.setAlignment(Pos.BASELINE_RIGHT);
+//        buttonLayout.setSpacing(20);
 
 
+        HBox mainBox = new HBox(vbLeftSide, vbRightSide);        //all
 
-			for (Vertex ve : Colleges) {
+        mainBox.setSpacing(30);
+        mainBox.setPadding(new Insets(30));
 
-				ImageView vi = new ImageView(Image);
+        mainBox.setAlignment(Pos.CENTER);
 
-				vi.setFitHeight(16);
-				vi.setFitWidth(16);
+        /////////////////////////////////////////////////////////////////////
+        mainPane.setCenter(mainBox);
+        mainPane.setAlignment(mainBox, Pos.CENTER);
 
-				ve.getCollege().getRadioButton().setGraphic(vi);
-				ve.getCollege().getRadioButton().setSelected(false);
 
-				t.clear();
-				free();
+        addPoint();///////////////////////////////////////////////////////////
 
-			}
+        run.setOnAction(e -> {
+            if (flag_CrossroadsVisible == false) {
+                showCrossroads();
+            }
 
-			for (Vertex ver : Colleges) {
-				ver.visited = false;
-				ver.previous = null;
-			}
+            Vertex vertx1 = null;
+            Vertex vertx2 = null;
 
-			addPoint();
+            String s1 = sourceCombo.getValue();
+            System.out.println(s1);
 
-		});
+            String s2 = targetCombo.getValue();
+            System.out.println(s2);
+
+            for (int i = 0; i < citiesAndStreets.size(); i++) {
+                if (citiesAndStreets.get(i).getLocation().getName().equals(s1)) {
+                    vertx1 = citiesAndStreets.get(i);
+                }
+                if (citiesAndStreets.get(i).getLocation().getName().equals(s2)) {
+                    vertx2 = citiesAndStreets.get(i);
+                }
+            }
+
+            if (vertx1 != null && vertx2 != null) {
+                int i = drawLine(Dijkstra(vertx1, vertx2));
+                if (i == 0)
+                    txtDistance.setText("0");
+                else if (i == 1)
+                    txtDistance.setText(String.valueOf(vertx2.distance));
+                data = FXCollections.observableArrayList(tableData);
+                resultPath_txtAr.setText("" + data);
+
+            }
+
+        });
+
+        reset.setOnAction(l -> {
+            flag_CrossroadsVisible = false;
+            pane2.getChildren().clear();
+
+            targetCombo.getSelectionModel().select(null);
+            sourceCombo.getSelectionModel().select(null);
+
+            txtDistance.setText("");
+
+            data.clear();
+            tableData.clear();
+
+            numOf_SelectedCities = 0;
+
+            pane2.getChildren().add(image);
+
+            String pinUrl = getClass().getClassLoader().getResource("pin.png").toExternalForm();
+            Image imagePin = new Image(pinUrl);
+
+
+            for (Vertex ve : citiesAndStreets) {
+                if (ve.getLocation().getType().equals("City")) {
+                    ImageView vi = new ImageView(imagePin);
+                    vi.setFitHeight(32);
+                    vi.setFitWidth(16);
+
+                    ve.getLocation().getRadioButton().setGraphic(vi);
+                    ve.getLocation().getRadioButton().setSelected(false);
+
+                    resultPath_txtAr.clear();
+
+                    ve.getLocation().setSourceOrTarget(false);
+
+                }
+
+
+            }
+            freeAllCities();
+
+            for (Vertex ver : citiesAndStreets) {
+                ver.visited = false;
+                ver.previous = null;
+            }
+
+            addPoint();
+
+            run.setDisable(true);
+            reset.setDisable(true);
+
+            targetCombo.setDisable(false);
+            sourceCombo.setDisable(false);
+
+        });
 
 //		addPoint();
 //		pane.getChildren().add(zoomPane);
 
-		zoomPane.getChildren().add(pane);
-		zoomPane.setAlignment(Pos.CENTER);
+//        zoomPane.getChildren().add(pane);
+//        zoomPane.setAlignment(Pos.CENTER);
 
 
-		//Creating the scroll pane
-		ScrollPane scroll = new ScrollPane(zoomPane);
-//		ScrollPane scroll = new ScrollPane(pane);
+        mainPane.setStyle("-fx-background-color: #565c5e;");
+        mainPane.setMinWidth(1600);
+        mainPane.setMinHeight(900);
 
-//		scroll.setPrefSize(595, 200);
+        ScrollPane scroll = new ScrollPane(mainPane);
+        scroll.setStyle("-fx-background-color: #565c5e;");
 
-		//Setting content to the scroll pane
+        Scene scene = new Scene(scroll, 1600, 910);
+        scroll.setFitToWidth(true);
+//        scroll.setFitToHeight(true);
+        scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+//        scroll.setFitToHeight(true);
+        scene.getStylesheets().add(getClass().getClassLoader().getResource("application.css").toExternalForm());
 
-//		scroll.setContent(zoomPane);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
 
-		//Setting the stage
-//		Group root = new Group();
-//		root.getChildren().addAll(scroll);
+    private void showCrossroads() {
+        flag_CrossroadsVisible = true;
+        double orgLat = 0;
+        double orgLon = 0;
+
+        double picLat = 0;
+        double picLon = 0;
+
+        for (int i = 0; i < citiesAndStreets.size(); i++) {
+            String type = citiesAndStreets.get(i).getLocation().getType();
+            if (type.equals("Street")) {
+                RadioButton r = citiesAndStreets.get(i).getLocation().getRadioButton();
+
+                orgLat = citiesAndStreets.get(i).getLocation().getLatitude();
+                orgLon = citiesAndStreets.get(i).getLocation().getLongitude();
+
+                picLat = calcPicLatX(orgLat);
+                picLon = calcPicLonY(orgLon);
+
+                System.out.println("setting point at (" + picLat + "," + picLon + ")");
+                r.setLayoutX(picLat);
+                r.setLayoutY(picLon);
+
+                pane2.getChildren().add(r);
+            }
+
+        }
+    }
+
+    private void resetPane(Pane pane) {
+        // Reset the pane to its original state
+        pane.setTranslateX(0);
+        pane.setTranslateY(0);
+        pane.setScaleX(1.0);
+        pane.setScaleY(1.0);
+    }
+
+    private int drawLine(Vertex Destination) {
+
+        //"from" vertex
+        double orgLat1_Converted = 0;
+        double orgLon1_Converted = 0;
+
+        //"to" vertex
+        double orgLat2_Converted = 0;
+        double orgLon2_Converted = 0;
 
 
+        if (Destination == null) {
+            error.setContentText("No path");
+            error.show();
+            return 0;
+        } else {
+            List<Vertex> pathList = new ArrayList<>();
+            for (Vertex v = Destination; v != null; v = v.previous) {
+                System.out.println("===============================================");
+                System.out.println(v.location.getName());
+                System.out.println("↓");
 
-		Scene scene = new Scene(scroll);
+                pathList.add(v);
+            }
+            System.out.println();
+            // V
+            Collections.reverse(pathList);
 
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-//		pane.setStyle("-fx-background-color: black");
-		primaryStage.setScene(scene);
-		primaryStage.show();
-	}
+            if (pathList.size() >= 1) {
+                for (int i = 1; i < pathList.size(); i++) {
+                    double d = Destination.getDistance();
+                    // double d = Distance(p.get(i - 1), p.get(i));
+                    tableData.add(new PathTable(d, pathList.get(i - 1).getLocation().getName(), pathList.get(i).getLocation().getName()));
+                }
 
-	private int drawLine(Vertex Destination) {
-		if (Destination == null) {
-			error.setContentText("No path");
-			error.show();
-			return 0;
-		} else {
-			List<Vertex> p = new ArrayList<>();
-			for (Vertex v = Destination; v != null; v = v.previous) {
-				System.out.print("-->" + v.college.getName() + " ");
-
-				p.add(v);
-			}
-			System.out.println();
-			// V
-			Collections.reverse(p);
-
-			if (p.size() >= 1) {
-				for (int i = 1; i < p.size(); i++) {
-					double d = Destination.getDistance();
-					// double d = Distance(p.get(i - 1), p.get(i));
-					tableData.add(new PathTable(d, p.get(i - 1).getCollege().getName(), p.get(i).getCollege().getName()));
-				}
-
-			} else if (p.size() <= 1) {
-				error.setContentText("No path");
-				error.show();
-			}
+            } else if (pathList.size() <= 1) {
+                error.setContentText("No path");
+                error.show();
+            }
 
 
-			for (int i = 0; i < p.size() - 1; i++) {
-				Vertex u = p.get(i);
-				Vertex v = p.get(i + 1);
+            for (int i = 0; i < pathList.size() - 1; i++) {
+                Vertex fromVer = pathList.get(i);
+                Vertex toVer = pathList.get(i + 1);
 
-				if (i != 0 && i != p.size() - 1) {
-					ImageView vi0 = new ImageView(new Image(
-							"H:\\.BZU MAIN\\.BZU\\COMP336 - Copy\\COMP336_3 RESOURCES\\location-pin (4).png"));
-					vi0.setFitHeight(16);
-					vi0.setFitWidth(16);
-					u.getCollege().getRadioButton().setGraphic(vi0);
-				}
+                if (i != 0 && i != pathList.size() - 1) {
 
-				Line line = new Line(u.college.getLatitude(), u.college.getLongitude(), v.college.getLatitude(), v.college.getLongitude());
-				pane2.getChildren().add(line);
-			}
-		}
-		return 1;
 
-	}
+                    String fromPinUrl = getClass().getClassLoader().getResource("fromPin.png").toExternalForm();
+                    Image imageFromPin = new Image(fromPinUrl);
+                    ImageView vImageFromPin = new ImageView(imageFromPin);
 
-	private void addPoint() {
-		double orgLat=0;
-		double orgLon=0;
+                    vImageFromPin.setFitHeight(32);
+                    vImageFromPin.setFitWidth(16);
 
-		double picLat=0;
-		double picLon=0;
 
-		for (int i = 0; i < Colleges.size(); i++) {
-			String type=Colleges.get(i).getCollege().getType();
-			if(type.equals("City")){
-				RadioButton r = Colleges.get(i).getCollege().getRadioButton();
+//                    ImageView vi0 = new ImageView(new Image(
+//                            "H:\\.BZU MAIN\\.BZU\\COMP336 - Copy\\COMP336_3 RESOURCES\\location-pin (4).png"));
+//                    vi0.setFitHeight(16);
+//                    vi0.setFitWidth(16);
 
-				orgLat=Colleges.get(i).getCollege().getLatitude();
-				orgLon=Colleges.get(i).getCollege().getLongitude();
+                    if (fromVer.getLocation().getType().equals("City")) {
+                        fromVer.getLocation().getRadioButton().setGraphic(vImageFromPin);
+                    }
 
-				picLat=calcPicLatX(orgLat);
-				picLon=calcPicLonY(orgLon);
 
-				System.out.println("setting point at ("+picLat+","+picLon+")");
-				r.setLayoutX(picLat);
-				r.setLayoutY(picLon);
+                }
+
+                //"from" vertex coordinates after converting them to pixels
+                orgLat1_Converted = calcPicLatX(fromVer.location.getLatitude());
+                orgLon1_Converted = calcPicLonY(fromVer.location.getLongitude());
+
+                //"to" vertex coordinates after converting them to pixels
+                orgLat2_Converted = calcPicLatX(toVer.location.getLatitude());
+                orgLon2_Converted = calcPicLonY(toVer.location.getLongitude());
+
+                Line line = new Line(orgLat1_Converted, orgLon1_Converted, orgLat2_Converted, orgLon2_Converted);
+//                Line line = new Line(fromVer.college.getLatitude(), fromVer.college.getLongitude(), toVer.college.getLatitude(), toVer.college.getLongitude());
+
+                pane2.getChildren().add(line);
+            }
+        }
+        return 1;
+
+    }
+
+    public void handleMousePressed(MouseEvent event) {
+        // Record the initial mouse coordinates when pressed
+        lastX = event.getSceneX();
+        lastY = event.getSceneY();
+    }
+
+    public void handleMouseDragged(MouseEvent event, Pane pane) {
+        // Calculate the delta between current and last mouse coordinates
+        double deltaX = event.getSceneX() - lastX;
+        double deltaY = event.getSceneY() - lastY;
+
+        // Adjust the pane's position based on the drag
+        pane.setLayoutX(pane.getLayoutX() + deltaX);
+        pane.setLayoutY(pane.getLayoutY() + deltaY);
+
+        // Update the last mouse coordinates
+        lastX = event.getSceneX();
+        lastY = event.getSceneY();
+    }
+
+//    private void handleMousePressed(MouseEvent event) {
+//        lastX = event.getSceneX();
+//        lastY = event.getSceneY();
+//    }
+//
+//    private void handleMouseDragged(MouseEvent event) {
+//        double deltaX = event.getSceneX() - lastX;
+//        double deltaY = event.getSceneY() - lastY;
+//
+//        // Adjust the image view's position based on the drag
+//        Pane p = (Pane) event.getSource();
+//        p.setLayoutX(p.getLayoutX() + deltaX);
+//        p.setLayoutY(p.getLayoutY() + deltaY);
+//
+//        lastX = event.getSceneX();
+//        lastY = event.getSceneY();
+//    }
+
+    private void addPoint() {
+        double orgLat = 0;
+        double orgLon = 0;
+
+        double picLat = 0;
+        double picLon = 0;
+
+        for (int i = 0; i < citiesAndStreets.size(); i++) {
+            String type = citiesAndStreets.get(i).getLocation().getType();
+            if (type.equals("City")) {
+                RadioButton r = citiesAndStreets.get(i).getLocation().getRadioButton();
+
+                orgLat = citiesAndStreets.get(i).getLocation().getLatitude();
+                orgLon = citiesAndStreets.get(i).getLocation().getLongitude();
+
+                picLat = calcPicLatX(orgLat);
+                picLon = calcPicLonY(orgLon);
+
+                System.out.println("setting point at (" + picLat + "," + picLon + ")");
+                r.setLayoutX(picLat);
+                r.setLayoutY(picLon);
 
 //				r.setLayoutX(picLon);
 //				r.setLayoutY(picLat);
 
 
-				pane2.getChildren().add(r);
-			}
+                pane2.getChildren().add(r);
+            }
 
-		}
+        }
 
-	}
+    }
 
 
+    private double calcPicLatX(double orgLat) {
+        double resultX1;
 
-	private double calcPicLatX(double orgLat) {
-		double resultX1;
-
-		//org_xMax-org_xMin	-->		pic_xMax-pic_xMin
-		//		orgLat		-->		resultX1
-		//cross multiplying
-		System.out.println(orgLat+" before converting");
+        //org_xMax-org_xMin	-->		pic_xMax-pic_xMin
+        //		orgLat		-->		resultX1
+        //cross multiplying
+        System.out.println(orgLat + " before converting");
 
 //		resultX1=((pic_xMax-pic_xMin)*orgLat)	/(org_xMax-org_xMin);
 //					18,506.0011666488910272		/0.168777646458516
-		double rightSideEquation=(orgLat-org_xMin)/(org_xMax-org_xMin);
-		double calculating= rightSideEquation*(pic_xMax-pic_xMin);
+        double rightSideEquation = (orgLat - org_xMin) / (org_xMax - org_xMin);
+        double calculating = rightSideEquation * (pic_xMax - pic_xMin);
 
-		resultX1=calculating+pic_xMin;
-//////////////////////////////////////////////////////////////////////
-//		double resultX2;
-//
-//
-//		double rightSideEquation2=(org_xMax-orgLat)/(org_xMax-org_xMin);
-//		double calculating2= rightSideEquation2/(pic_xMax-pic_xMin);
-//
-//		resultX2=pic_xMax-calculating2;
+        resultX1 = calculating + pic_xMin;
 
-		return resultX1;
-	}
+        return resultX1;
+    }
 
-	private double calcPicLonY(double orgLon) {
-		double resultY;
+    private double calcPicLonY(double orgLon) {
+        double resultY;
 //		resultY=((pic_yMax-pic_yMin)*orgLon)/(org_yMax-org_yMin);
 
-		double rightSideEquation=(orgLon-org_yMin)/(org_yMax-org_yMin);
-		double calculating= rightSideEquation*(pic_yMax-pic_yMin);
+        double rightSideEquation = (orgLon - org_yMin) / (org_yMax - org_yMin);
+        double calculating = rightSideEquation * (pic_yMax - pic_yMin);
 
-		resultY=calculating+pic_yMin;
-
-
-		return resultY;
-	}
-
-	public static void main(String[] args) {
-
-		launch(args);
-	}
-
-	public static void lock() {
-		try {
-			for (int i = 0; i < Colleges.size(); i++) {
-				Colleges.get(i).getCollege().getRadioButton().setDisable(true);
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-	public static void free() {
-		try {
-			for (int i = 0; i < Colleges.size(); i++) {
-				Colleges.get(i).getCollege().getRadioButton().setDisable(false);
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-	public Vertex Dijkstra(Vertex Source, Vertex Destination) {// O(n) = (V(logV+E))
-		Source.distance = 0;
-		if (Source == Destination) {
-			return null;
-		}
-
-		PriorityQueue<Vertex> pq = new PriorityQueue<>(new Comparator<Vertex>() { // Log V
-			@Override
-			public int compare(Vertex v1, Vertex v2) {
-				return Double.compare(v1.distance, v2.distance);
-			}
-		});
-
-		pq.add(Source);
-
-		while (!pq.isEmpty()) { // V
-			Vertex u = pq.poll(); //// Log V
-
-			u.visited = true;
-			if (u.college.getName().equals(Destination.getCollege().getName())) {
-				break;
-			}
-			for (edges e : u.getE()) { // E
-				Vertex v = e.desination;
-				if (!v.visited) {
-					double weight = e.weight;
-					double distanceThroughU = u.distance + weight;
-					if (distanceThroughU < v.distance) {
-						v.distance = distanceThroughU;
-						v.previous = u;
-						pq.add(v);
-					}
-				}
-			}
-		}
-
-		return Destination;
-	}
-
-	public static void readFile(File file) {
-		try {
-			Scanner sc = new Scanner(file);
-			String[] l = sc.nextLine().split(":");
-
-			int numCounter = Integer.parseInt(l[0]);
-			int numEdge = Integer.parseInt(l[1]);
+        resultY = calculating + pic_yMin;
 
 
-			int num = 0;
-			int count = 0;
-			while (count < numCounter) {
-				String line = sc.nextLine();
-				System.out.println(line);
-				Vertex ver = new Vertex(new College(line), num++);
-				Colleges.add(ver);
-				count++;
-			}
+        return resultY;
+    }
 
-			count = 0;
-			while (count < numEdge) {
-				String tokens[] = sc.nextLine().split(":");
-				System.out.println(tokens[2]+" hhhhhhhhhh");
-				for (int i = 0; i < Colleges.size(); i++) {
-					if (Colleges.get(i).getCollege().getName().compareToIgnoreCase(tokens[0]) == 0) {
-						for (int j = 0; j < Colleges.size(); j++) {
+    public static void main(String[] args) {
 
-							if (Colleges.get(j).getCollege().getName().compareToIgnoreCase(tokens[1]) == 0) {
-								Colleges.get(i).e.add(
-										new edges(Colleges.get(i), Colleges.get(j), Double.parseDouble(tokens[2])));
-							}
-						}
-					}
-				}
-				count++;
-			}
-			sc.close();
-		} catch (FileNotFoundException t) {
-			System.out.println(t);
-		}
-	}
+        launch(args);
+    }
+
+    public static void lockAllCities() {
+
+
+        for (Vertex v : citiesAndStreets) {
+            if (v.getLocation().getType().equals("City")) {
+                if (v.getLocation().getSourceOrTarget()) {
+                    //do nothing
+                } else {
+                    v.getLocation().getRadioButton().setDisable(true);
+                }
+            }
+        }
+    }
+
+    public static void freeAllCities() {
+        for (Vertex v : citiesAndStreets) {
+            if (v.getLocation().getType().equals("City")) {
+                v.getLocation().getRadioButton().setDisable(false);
+            }
+        }
+
+    }
+
+    public Vertex Dijkstra(Vertex Source, Vertex Destination) {// O(n) = (V(logV+E))
+        Source.distance = 0;
+        if (Source == Destination) {
+            return null;
+        }
+
+//        double minimumDis = -1;
+//        for (Vertex v : citiesAndStreets) {//searching for minimum unknown distance
+//            if (!v.visited) {//unknown
+//                if (v.getDistance() < minimumDis) {
+//                    minimumDis = v.getDistance();
+//                }
+//
+//            }
+//        }
+
+
+        PriorityQueue<Vertex> pq = new PriorityQueue<>(new Comparator<Vertex>() { // Log V
+            @Override
+            public int compare(Vertex v1, Vertex v2) {
+                return Double.compare(v1.distance, v2.distance);
+            }
+        });
+
+        pq.add(Source);
+
+        while (!pq.isEmpty()) { // V
+            Vertex u = pq.poll(); //// Log V
+
+            u.visited = true;
+            if (u.location.getName().equals(Destination.getLocation().getName())) {
+                break;
+            }
+            for (Edge e : u.getAdjacentsList()) { // E
+                Vertex v = e.targetVer;
+                if (!v.visited) {
+                    double weight = e.calculatedDistance;
+                    double distanceThroughU = u.distance + weight;
+                    if (distanceThroughU < v.distance) {
+                        v.distance = distanceThroughU;
+                        v.previous = u;
+                        pq.add(v);
+                    }
+                }
+            }
+        }
+
+        return Destination;
+    }
+
+    public static void readFile(File file) throws FileNotFoundException {
+
+        Scanner sc = new Scanner(file);
+        String[] l = sc.nextLine().split(":");
+
+        int numOf_citiesAndStreets = Integer.parseInt(l[0]);    //number of citiesAndStreets
+        int numOf_adjacents = Integer.parseInt(l[1]);       //number of adjacents
+
+        int counter = 0;
+
+        //collecting citiesAndStreets, and sending each line of them to the constructor of location
+        int num = 0;
+        while (counter < numOf_citiesAndStreets) {
+            String line = sc.nextLine();
+
+            if (!line.trim().isEmpty()) {
+                System.out.println(line);
+
+                Vertex ver = new Vertex(new Location(line), num++);
+                citiesAndStreets.add(ver);
+                counter++;
+            }
+
+        }
+
+        //collecting and assigning the adjacents of every element of citiesAndStreets(every location)
+        counter = 0;
+        while (counter < numOf_adjacents) {
+            String line = sc.nextLine();
+
+            if (!line.trim().isEmpty()) {
+
+                String[] splitedLine = line.split(":");
+//                System.out.println(tokens[2] + " hhhhhhhhhh");
+
+                String adj1 = splitedLine[0];
+                String adj2 = splitedLine[1];
+
+
+                for (Vertex first : citiesAndStreets) {
+                    if (first.getLocation().getName().equals(adj1)) {
+
+                        for (Vertex second : citiesAndStreets) {
+                            if (second.getLocation().getName().equals(adj2)) {
+                                assignAdjacent(first, second);
+                            }
+                        }
+
+
+                    }
+                }
+                counter++;
+            }
+
+
+        }
+        sc.close();
+
+    }
+
+    private static void assignAdjacent(Vertex first, Vertex second) {
+
+        double distance1 = haversine(first, second);
+//      Colleges.get(i).e.add(new edges(Colleges.get(i), Colleges.get(j), Double.parseDouble(tokens[2])));
+        first.adjacentsList.add(new Edge(first, second, distance1));
+//      double distance2 = haversine(citiesAndStreets.get(j), citiesAndStreets.get(i));
+//      citiesAndStreets.get(i).adjacentsList.add(new Edge(citiesAndStreets.get(i), citiesAndStreets.get(j), distance2));
+    }
+
+    private static double haversine(Vertex vertex1, Vertex vertex2) {
+
+        //first Point
+        double lat1 = vertex1.getLocation().getLatitude();
+        double lon1 = vertex1.getLocation().getLongitude();
+
+        //second point
+        double lat2 = vertex2.getLocation().getLatitude();
+        double lon2 = vertex2.getLocation().getLongitude();
+
+
+        double R = 6371.0;  //earth radius in kilometers
+
+        //convert coordinates from degrees to radians
+        lat1 = Math.toRadians(lat1);
+        lon1 = Math.toRadians(lon1);
+        lat2 = Math.toRadians(lat2);
+        lon2 = Math.toRadians(lon2);
+
+        double dlat = lat2 - lat1;
+        double dlon = lon2 - lon1;
+
+        double a = Math.pow(Math.sin(dlat / 2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(dlon / 2), 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        double distance = R * c;
+
+        return distance;
+
+    }
 
 }

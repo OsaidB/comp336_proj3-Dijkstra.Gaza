@@ -4,16 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="edfbf7a7-fa67-4423-a067-4c98a3216f14" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="edfbf7a7-fa67-4423-a067-4c98a3216f14" name="Changes" comment="if you know, YOU KNOW">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/Location.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fromPin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/pin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/rec.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/temp2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/toPin.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/AnimatedZoomOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/AnimatedZoomOperator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/College.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/College.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/College.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/PathTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/PathTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/Vertex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/Vertex.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/edges.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/edges.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/edges.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/Edge.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Data.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Gaza.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Gaza.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/temp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/temp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,21 +53,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "H:/.BZU MAIN/.BZU/COMP336 - Copy/COMP336_3 - Copy/src/main/resources",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;H:/.BZU MAIN/.BZU/COMP336 - Copy/COMP336_3 - Copy/src/main/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="H:\.BZU MAIN\.BZU\COMP336 - Copy\COMP336_3 - Copy\src\main\resources" />
@@ -99,11 +107,55 @@
       <workItem from="1688480237317" duration="10628000" />
       <workItem from="1688580115500" duration="3104000" />
       <workItem from="1688835289083" duration="9055000" />
-      <workItem from="1704750263192" duration="23989000" />
+      <workItem from="1704750263192" duration="31017000" />
+      <workItem from="1704873989937" duration="13236000" />
+      <workItem from="1705068519635" duration="2339000" />
+      <workItem from="1705154221236" duration="34586000" />
+      <workItem from="1705331114631" duration="9485000" />
+      <workItem from="1705346031494" duration="18353000" />
+      <workItem from="1705420872969" duration="14960000" />
     </task>
+    <task id="LOCAL-00001" summary="if you know, YOU KNOW">
+      <created>1704825712235</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1704825712235</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="if you know, YOU KNOW" />
+    <option name="LAST_COMMIT_MESSAGE" value="if you know, YOU KNOW" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/comp336_3/Main.java</url>
+          <line>832</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/comp336_3/Main.java</url>
+          <line>128</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/comp336_3/Main.java</url>
+          <line>353</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/comp336_3/Main.java</url>
+          <line>398</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
