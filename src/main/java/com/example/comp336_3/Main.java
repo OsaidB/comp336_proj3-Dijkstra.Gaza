@@ -420,6 +420,8 @@ public class Main extends Application {
             targetCombo.setDisable(false);
             sourceCombo.setDisable(false);
 
+            primaryStage.close();
+            primaryStage.show();
         });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -654,26 +656,32 @@ public class Main extends Application {
             @Override
             public int compare(Vertex v1, Vertex v2) {
                 return Double.compare(v1.distance, v2.distance);
+                //returns a negative integer, zero,
+                // or a positive integer
+                // if the first object is less than,
+                // equal to,
+                // or greater than the second object
             }
         });
 
         pq.add(Source);
 
         while (!pq.isEmpty()) { // V
-            Vertex u = pq.poll(); //// Log V
+            Vertex currVer = pq.poll(); //// Log V
 
-            u.visited = true;
-            if (u.location.getName().equals(Destination.getLocation().getName())) {
+            currVer.visited = true;
+            if (currVer.location.getName().equals(Destination.getLocation().getName())) {
                 break;
             }
-            for (Edge e : u.getAdjacentsList()) { // E
-                Vertex v = e.targetVer;
+
+            for (Edge edge : currVer.getAdjacentsList()) { // E
+                Vertex v = edge.targetVer;
                 if (!v.visited) {
-                    double weight = e.calculatedDistance;
-                    double distanceThroughU = u.distance + weight;
+                    double currDistance = edge.calculatedDistance;
+                    double distanceThroughU = currVer.distance + currDistance;
                     if (distanceThroughU < v.distance) {
                         v.distance = distanceThroughU;
-                        v.previous = u;
+                        v.previous = currVer;
                         pq.add(v);
                     }
                 }

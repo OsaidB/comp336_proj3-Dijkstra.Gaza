@@ -43,9 +43,7 @@ public class Location {
 
 
         if (type.equals("City")) {
-//			radioButton.setPadding(new Insets(-7.5));
-//			ImageView vi = new ImageView(new Image("H:\\.BZU MAIN\\.BZU\\COMP336 - Copy\\COMP336_3 RESOURCES\\location-pin (1).png"));
-//			radioButton.setPadding(new Insets(-7.5,0,-7.5,-3));
+
             radioButton.setPadding(new Insets(-15, 0, -15, -6));
             String imageUrlD = getClass().getClassLoader().getResource("pin.png").toExternalForm();
             Image mG = new Image(imageUrlD);
@@ -79,10 +77,6 @@ public class Location {
                 if (Main.numOf_SelectedCities == 0) {//source
                     System.out.println(Main.numOf_SelectedCities);
 
-//                ImageView vi0 = new ImageView(new Image("H:\\.BZU MAIN\\.BZU\\COMP336 - Copy\\COMP336_3 RESOURCES\\location-pin.png"));
-//                vi0.setFitHeight(16);
-//                vi0.setFitWidth(16);
-//                radioButton.setGraphic(vi0);
 
                     String fromPinUrl = getClass().getClassLoader().getResource("fromPin.png").toExternalForm();
                     Image imageFromPin = new Image(fromPinUrl);
@@ -92,10 +86,7 @@ public class Location {
                     vImageFromPin.setFitWidth(16);
                     radioButton.setGraphic(vImageFromPin);
 
-//               int index=getItemIndex(radioButton.getText());
                     int index = getItemIndex(this.getName());
-
-//                Main.sourceCombo.getItems().get();
 
                     System.out.println(radioButton.getText());
                     if (index != -1) {
@@ -104,20 +95,7 @@ public class Location {
                     } else {
                         System.out.println("****************************Error! Item not found!****************************");
                     }
-//
-//
-//                for (int i = 0; i < Main.sourceCombo.getVisibleRowCount(); i++) {
-//                    String type = Main.citiesAndStreets.get(i).getCollege().getType();
-//
-//                    if (type.equals("City") && Main.citiesAndStreets.get(i).getCollege().getName().equals(radioButton.getText())) {
-//
-//                        ToggleGroup radioGroup = Main.sourceCombo;// Reference to the ToggleGroup containing the Radio Buttons
-//                        int radioCount = radioGroup.getToggles().size();
-//
-//                        Main.citiesAndStreets.get(i).getCollege().getRadioButton().setSelected(true);//////////////////////////////////
-//                        Main.sourceCombo.setSelectionModel(radioButton);
-//                    }}
-//                Main.numOf_SelectedCities += 1;
+
                     System.out.println(Main.numOf_SelectedCities);
                 } else if (Main.numOf_SelectedCities == 1) {//target
 
@@ -132,7 +110,6 @@ public class Location {
 
                     int index = getItemIndex(this.getName());
 
-//                Main.sourceCombo.getItems().get();
 
                     System.out.println(radioButton.getText());
                     if (index != -1) {
@@ -174,7 +151,7 @@ public class Location {
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i).equals(nameOfItem)) {
                 index = i;
-                break;  // Exit the loop once the item is found
+                break;
             }
         }
         return index;
@@ -193,48 +170,20 @@ public class Location {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
     public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
     public RadioButton getRadioButton() {
         return radioButton;
-    }
-
-    public void setRadioButton(RadioButton radioButton) {
-        this.radioButton = radioButton;
-    }
-
-    public ToggleGroup getGroup() {
-        return group;
-    }
-
-    public void setGroup(ToggleGroup group) {
-        this.group = group;
     }
 
 }

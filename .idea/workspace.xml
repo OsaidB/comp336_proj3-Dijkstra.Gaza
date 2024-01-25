@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="edfbf7a7-fa67-4423-a067-4c98a3216f14" name="Changes" comment="fixes and some enhancements">
+    <list default="true" id="edfbf7a7-fa67-4423-a067-4c98a3216f14" name="Changes" comment="fixes2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/Edge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/Location.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/Vertex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/Vertex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Data.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +105,9 @@
       <workItem from="1705503756341" duration="2128000" />
       <workItem from="1705816490736" duration="6522000" />
       <workItem from="1706104508323" duration="972000" />
+      <workItem from="1706145942292" duration="153000" />
+      <workItem from="1706175319232" duration="586000" />
+      <workItem from="1706176211311" duration="3089000" />
     </task>
     <task id="LOCAL-00001" summary="if you know, YOU KNOW">
       <created>1704825712235</created>
@@ -123,7 +130,14 @@
       <option name="project" value="LOCAL" />
       <updated>1705449403103</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fixes2">
+      <created>1706146069214</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1706146069214</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,7 +147,8 @@
     <MESSAGE value="if you know, YOU KNOW" />
     <MESSAGE value="Huge Update" />
     <MESSAGE value="fixes and some enhancements" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixes and some enhancements" />
+    <MESSAGE value="fixes2" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixes2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

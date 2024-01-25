@@ -823,8 +823,8 @@ Khuza'a:alSalam
 'Abasan al-Kabira:absan2
 absan2:'Abasan al-Kabira
 
-Al Fukhkhari:SalahEldeen16
-SalahEldeen16:Al Fukhkhari
+Al Fukhkhari:SalahEldeen16_1
+SalahEldeen16_1:Al Fukhkhari
 Khan_Yunis:elBaheer1
 elBaheer1:Khan_Yunis
 
