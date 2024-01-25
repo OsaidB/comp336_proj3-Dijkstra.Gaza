@@ -716,7 +716,6 @@ public class Main extends Application {
             if (!line.trim().isEmpty()) {
 
                 String[] splitedLine = line.split(":");
-//                System.out.println(tokens[2] + " hhhhhhhhhh");
 
                 String adj1 = splitedLine[0];
                 String adj2 = splitedLine[1];
@@ -744,12 +743,8 @@ public class Main extends Application {
     }
 
     private static void assignAdjacent(Vertex first, Vertex second) {
-
         double distance1 = haversine(first, second);
-//      Colleges.get(i).e.add(new edges(Colleges.get(i), Colleges.get(j), Double.parseDouble(tokens[2])));
         first.adjacentsList.add(new Edge(first, second, distance1));
-//      double distance2 = haversine(citiesAndStreets.get(j), citiesAndStreets.get(i));
-//      citiesAndStreets.get(i).adjacentsList.add(new Edge(citiesAndStreets.get(i), citiesAndStreets.get(j), distance2));
     }
 
     private static double haversine(Vertex vertex1, Vertex vertex2) {

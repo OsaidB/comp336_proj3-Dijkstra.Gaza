@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="edfbf7a7-fa67-4423-a067-4c98a3216f14" name="Changes" comment="Huge Update">
+    <list default="true" id="edfbf7a7-fa67-4423-a067-4c98a3216f14" name="Changes" comment="fixes and some enhancements">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/AnimatedZoomOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/AnimatedZoomOperator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/Edge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/Location.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/PathTable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/Vertex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/comp336_3/Vertex.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +97,10 @@
       <workItem from="1705154221236" duration="34586000" />
       <workItem from="1705331114631" duration="9485000" />
       <workItem from="1705346031494" duration="18353000" />
-      <workItem from="1705420872969" duration="20767000" />
+      <workItem from="1705420872969" duration="21045000" />
+      <workItem from="1705503756341" duration="2128000" />
+      <workItem from="1705816490736" duration="6522000" />
+      <workItem from="1706104508323" duration="972000" />
     </task>
     <task id="LOCAL-00001" summary="if you know, YOU KNOW">
       <created>1704825712235</created>
@@ -118,7 +116,14 @@
       <option name="project" value="LOCAL" />
       <updated>1705443528026</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fixes and some enhancements">
+      <created>1705449403103</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1705449403103</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -127,7 +132,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="if you know, YOU KNOW" />
     <MESSAGE value="Huge Update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Huge Update" />
+    <MESSAGE value="fixes and some enhancements" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixes and some enhancements" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
